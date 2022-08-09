@@ -12,11 +12,11 @@ def from_decimal(d, b):
     return remLs
 
 def to_decimal(d, b):
-    strList = str(d).split()
+    strList = [*str(d)]
     strList.reverse()
     dec = 0
     for i in range(len(strList)):
-        dec += int(strList[i]) * b**i
+        dec += int(strList[i]) * (b**i)
     return dec
 
 selectConvert = int(input("1 to convert from decimal, 2 to convert to decimal: "))
@@ -27,6 +27,6 @@ if selectConvert == 1:
 elif selectConvert == 2:
     toDecInput = int(input("Enter the decimal: "))
     toDecBase = int(input("Enter the base: "))
-    print(from_decimal(toDecInput, toDecBase))
+    print(to_decimal(toDecInput, toDecBase))
 else:
     print("error")
