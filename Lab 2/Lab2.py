@@ -1,7 +1,4 @@
  # Siraphop Mukdaphetcharat 64011614
-from re import S
-
-
 hexDict = {"A": 10, "B" : 11, "C" : 12, "D" : 13, "E" : 14, "F" : 15} #hex dictionary
 
 def from_decimal(d, b):
