@@ -1,4 +1,5 @@
  # Siraphop Mukdaphetcharat 64011614
+hexDict = {"A": 10, "B" : 11, "C" : 12, "D" : 13, "E" : 14, "F" : 15}
 
 def from_decimal(d, b):
     i = d
@@ -30,3 +31,4 @@ elif selectConvert == 2:
     print(to_decimal(toDecInput, toDecBase))
 else:
     print("error")
+
