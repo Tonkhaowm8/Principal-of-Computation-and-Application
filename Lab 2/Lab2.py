@@ -5,13 +5,19 @@
 def from_decimal(d, b):
     i = d
     remLs = []
+    finalLs = []
     while i != 0:
         rem = i % b
         print(rem)
         remLs.append(rem)
         i = i//b
     remLs.reverse()
-    return remLs
+    for i in remLs:
+        if i <= 9:
+            finalLs.append(i)
+        else:
+            finalLs.append(chr(i + 55))
+    return finalLs
 
 def to_decimal(d, b):
     numLs = []
