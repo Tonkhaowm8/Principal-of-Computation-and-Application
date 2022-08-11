@@ -27,15 +27,23 @@ def to_decimal(d, b):
         dec += int(numLs[i]) * (int(b)**i)
     return dec
 
-selectConvert = int(input("1 to convert from decimal, 2 to convert to decimal: "))
-if selectConvert == 1:
-    deciInput = int(input("Enter the decimal: "))
-    decibase = int(input("Enter the base: "))
-    print(from_decimal(deciInput, decibase))
-elif selectConvert == 2:
-    toDecInput = input("Enter the power: ")
-    toDecBase = input("Enter the base: ")
-    print(to_decimal(toDecInput, toDecBase))
-else:
-    print("error")
+def start():
+    try:
 
+        selectConvert = int(input("1 to convert from decimal, 2 to convert to decimal: "))
+        if selectConvert == 1:
+            deciInput = int(input("Enter the decimal: "))
+            decibase = int(input("Enter the base: "))
+            print(from_decimal(deciInput, decibase))
+        elif selectConvert == 2:
+            toDecInput = input("Enter the power: ")
+            toDecBase = input("Enter the base: ")
+            print(to_decimal(toDecInput, toDecBase))
+        else:
+            print("Please select 1 or 2")
+            start()
+    except:
+        print("Please select 1 or 2")
+        start()
+
+start()
