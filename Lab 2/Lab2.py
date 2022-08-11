@@ -1,6 +1,5 @@
  # Siraphop Mukdaphetcharat 64011614
 hexDict = {"A": 10, "B" : 11, "C" : 12, "D" : 13, "E" : 14, "F" : 15} #hex dictionary
-hexLs = ["A", "B", "C", "D", "E", "F"]
 
 def from_decimal(d, b):
     i = d
