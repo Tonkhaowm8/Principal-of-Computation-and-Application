@@ -1,32 +1,30 @@
  # Siraphop Mukdaphetcharat 64011614
-#hexDict = {"A": 10, "B" : 11, "C" : 12, "D" : 13, "E" : 14, "F" : 15, "G" : 16, "H" : 17, "I" : 18, "J" : 19, "K" : 20,"L" : 21,"M" : 22,"N" : 23,
-#"O" : 24,"P" : 25,"Q" : 26,"R" : 27,"S" : 28,"T" : 29,"U" : 30,"V" : 31,"W" : 32,"X" : 33,"Y" : 34,"Z" : 35} #hex dictionary
 
-def from_decimal(d, b): #convert decimal to any base
+def from_decimal(d, b): # Convert decimal to any base function
     i = d
     remLs = []
     finalLs = []
-    while i != 0:
+    while i != 0: # Change decimal to base given
         rem = i % b
         print(rem)
         remLs.append(rem)
         i = i//b
     remLs.reverse()
-    for i in remLs:
+    for i in remLs: # Convert the number to hex alphabet if the number exceed 9
         if i <= 9:
             finalLs.append(i)
         else:
-            finalLs.append(chr(i + 55))
+            finalLs.append(chr(i + 55)) # chr is ascii shit that converts number to characters
     return finalLs
 
 def to_decimal(d, b): # Convert any base to decimal
     numLs = []
-    strList = [*str(d)]
+    strList = [*str(d)] # convert string without space into arrays
     strList.reverse()
     for i in strList:
-        try:
+        try: # Capitalize everything so that the text would have similar ASCII code
             i.capitalize()
-            translated = ord(i) - 55
+            translated = ord(i) - 55 # ord change ASCII code of text into number
             if translated <= int(b):
                 numLs.append(translated)
             else:
@@ -34,7 +32,7 @@ def to_decimal(d, b): # Convert any base to decimal
         except:
             numLs.append(int(i))
     dec = 0
-    for i in range(len(numLs)):
+    for i in range(len(numLs)): # calculate base number into decimals
         dec += int(numLs[i]) * (int(b)**i)
     return dec
 
@@ -51,7 +49,7 @@ def start(): # Start Function for user input
                     rep = False
                 except:
                     print("please input a correct input type")
-            elif selectConvert == 2:
+            elif selectConvert == 2: #Input from decimal to any base
                 try:
                     toDecInput = input("Enter the power: ")
                     toDecBase = input("Enter the base: ")
