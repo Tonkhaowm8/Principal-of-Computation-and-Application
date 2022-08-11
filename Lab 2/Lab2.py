@@ -29,19 +29,28 @@ def to_decimal(d, b):
 
 def start():
     try:
-
+        rep = True
         selectConvert = int(input("1 to convert from decimal, 2 to convert to decimal: "))
-        if selectConvert == 1:
-            deciInput = int(input("Enter the decimal: "))
-            decibase = int(input("Enter the base: "))
-            print(from_decimal(deciInput, decibase))
-        elif selectConvert == 2:
-            toDecInput = input("Enter the power: ")
-            toDecBase = input("Enter the base: ")
-            print(to_decimal(toDecInput, toDecBase))
-        else:
-            print("Please select 1 or 2")
-            start()
+        while rep:
+            if selectConvert == 1:
+                try:
+                    deciInput = int(input("Enter the decimal: "))
+                    decibase = int(input("Enter the base: "))
+                    print(from_decimal(deciInput, decibase))
+                    rep = False
+                except:
+                    print("please input a correct input type")
+            elif selectConvert == 2:
+                try:
+                    toDecInput = input("Enter the power: ")
+                    toDecBase = input("Enter the base: ")
+                    print(to_decimal(toDecInput, toDecBase))
+                    rep = False
+                except:
+                    print("please input a correct input type")
+            else:
+                print("Please select 1 or 2")
+                start()
     except:
         print("Please select 1 or 2")
         start()
