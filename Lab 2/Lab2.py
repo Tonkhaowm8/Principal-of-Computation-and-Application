@@ -2,7 +2,7 @@
 #hexDict = {"A": 10, "B" : 11, "C" : 12, "D" : 13, "E" : 14, "F" : 15, "G" : 16, "H" : 17, "I" : 18, "J" : 19, "K" : 20,"L" : 21,"M" : 22,"N" : 23,
 #"O" : 24,"P" : 25,"Q" : 26,"R" : 27,"S" : 28,"T" : 29,"U" : 30,"V" : 31,"W" : 32,"X" : 33,"Y" : 34,"Z" : 35} #hex dictionary
 
-def from_decimal(d, b):
+def from_decimal(d, b): #convert decimal to any base
     i = d
     remLs = []
     finalLs = []
@@ -19,7 +19,7 @@ def from_decimal(d, b):
             finalLs.append(chr(i + 55))
     return finalLs
 
-def to_decimal(d, b):
+def to_decimal(d, b): # Convert any base to decimal
     numLs = []
     strList = [*str(d)]
     strList.reverse()
