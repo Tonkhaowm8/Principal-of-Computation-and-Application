@@ -1,12 +1,14 @@
  # Siraphop Mukdaphetcharat 64011614
 
 def from_decimal(d, b): # Convert decimal to any base function
+    if b == 1:
+        print("ERROR! Base cannot be 1!!")
+        exit()
     i = d
     remLs = []
     finalLs = []
     while i != 0: # Change decimal to base given
         rem = i % b
-        print(rem)
         remLs.append(rem)
         i = i//b
     remLs.reverse()
@@ -18,6 +20,9 @@ def from_decimal(d, b): # Convert decimal to any base function
     return finalLs
 
 def to_decimal(d, b): # Convert any base to decimal
+    if b == "1":
+        print("ERROR! Base cannot be 1!!")
+        exit()
     numLs = []
     strList = [*str(d)] # convert string without space into arrays
     strList.reverse()
