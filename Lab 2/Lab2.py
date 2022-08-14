@@ -1,8 +1,12 @@
  # Siraphop Mukdaphetcharat 64011614
 
 def from_decimal(d, b): # Convert decimal to any base function
+    ansLs = []
     if b == 1:
         print("ERROR! Base cannot be 1!!")
+        exit()
+    elif b > 36:
+        print("ERROR! Base cannot exceed 36!")
         exit()
     i = d
     remLs = []
@@ -17,7 +21,10 @@ def from_decimal(d, b): # Convert decimal to any base function
             finalLs.append(i)
         else:
             finalLs.append(chr(i + 55)) # chr is ascii shit that converts number to characters
-    return finalLs
+    for i in finalLs:
+        ansLs.append(str(i))
+        ans = "".join(ansLs)
+    return ans
 
 def to_decimal(d, b): # Convert any base to decimal
     if b == "1":
