@@ -34,10 +34,10 @@ def to_decimal(d, b):  # Convert any base to decimal
         print("ERROR! Base cannot be an alphabet")
         exit()
     elif b == "1" or b == "0":
-        print("ERROR! Base cannot be 1!!")
+        print("ERROR! Base cannot be less than 1!!")
         exit()
     elif "-" in b or "-" in d:
-        print("ERROR! Cannot be less than or equal to zero!")
+        print("ERROR! Base cannot be less than 1!!")
         exit()
     numLs = []
     strList = [*str(d)]  # convert string without space into arrays
