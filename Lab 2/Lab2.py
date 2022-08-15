@@ -8,7 +8,7 @@ def from_decimal(d, b):  # Convert decimal to any base function
         print("ERROR! Base cannot exceed 36!")
         exit()
     elif b <= 0 or d <= 0:
-        print("ERROR! Base cannot be a negative number")
+        print("ERROR! Base cannot be less than or equal to zero!")
         exit()
     i = d
     remLs = []
@@ -34,7 +34,7 @@ def to_decimal(d, b):  # Convert any base to decimal
         print("ERROR! Base cannot be 1!!")
         exit()
     elif "-" in b or "-" in d:
-        print("ERROR! Cannot be negative number!")
+        print("ERROR! Cannot be less than or equal to zero!")
         exit()
     numLs = []
     strList = [*str(d)]  # convert string without space into arrays
