@@ -30,7 +30,10 @@ def from_decimal(d, b):  # Convert decimal to any base function
 
 
 def to_decimal(d, b):  # Convert any base to decimal
-    if b == "1":
+    if b.isalpha():
+        print("ERROR! Base cannot be an alphabet")
+        exit()
+    elif b == "1":
         print("ERROR! Base cannot be 1!!")
         exit()
     elif "-" in b or "-" in d:
