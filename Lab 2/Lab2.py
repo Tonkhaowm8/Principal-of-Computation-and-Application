@@ -22,7 +22,7 @@ def from_decimal(d, b):  # Convert decimal to any base function
         if i <= 9:
             finalLs.append(i)
         else:
-            finalLs.append(chr(i + 55))  # chr is ascii shit that converts number to characters
+            finalLs.append(chr(i + 55))  # chr is ascii function that converts number to characters
     for i in finalLs:
         ansLs.append(str(i))
         ans = "".join(ansLs)
