@@ -43,7 +43,7 @@ def to_decimal(d, b):  # Convert any base to decimal
         try:  # Capitalize everything so that the text would have similar ASCII code
             i = int(i)
             numLs.append(int(i))
-        except AttributeError:
+        except ValueError:
             i.capitalize()
             translated = ord(i) - 55  # ord change ASCII code of text into number
             if translated <= int(b):
