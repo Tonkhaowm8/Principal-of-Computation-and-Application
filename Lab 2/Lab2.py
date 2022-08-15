@@ -49,7 +49,8 @@ def to_decimal(d, b):  # Convert any base to decimal
             if translated <= int(b):
                 numLs.append(translated)
             else:
-                print("error! Invalid Input")
+                print("Error! Invalid Input")
+                exit()
     dec = 0
     for i in range(len(numLs)):  # calculate base number into decimals
         dec += int(numLs[i]) * (int(b) ** i)
