@@ -33,7 +33,7 @@ def to_decimal(d, b):  # Convert any base to decimal
     if b.isalpha():
         print("ERROR! Base cannot be an alphabet")
         exit()
-    elif b == "1":
+    elif b == "1" or b == "0":
         print("ERROR! Base cannot be 1!!")
         exit()
     elif "-" in b or "-" in d:
