@@ -30,18 +30,6 @@ def from_decimal(d, b):  # Convert decimal to any base function
 
 
 def to_decimal(d, b):  # Convert any base to decimal
-    try:
-        decc = int(d)
-        basee = int(b)
-        if basee < decc:
-            print("error decimal cannot be more than base")
-            exit()
-    except ValueError:
-        convert = ord(d) - 55
-        basee = int(b)
-        if convert > basee:
-            print("error decimal cannot be more than base")
-            exit()
     if b.isalpha():
         print("ERROR! Base cannot be an alphabet")
         exit()
@@ -57,11 +45,18 @@ def to_decimal(d, b):  # Convert any base to decimal
     for i in strList:
         try:  # Capitalize everything so that the text would have similar ASCII code
             i = int(i)
-            numLs.append(int(i))
+            if i >= int(b):
+                print("input error")
+                exit()
+            else:
+                numLs.append(int(i))
         except ValueError:
             i.capitalize()
             translated = ord(i) - 55  # ord change ASCII code of text into number
-            if translated <= int(b):
+            if translated > int(b):
+                print("input error")
+                exit()
+            elif translated <= int(b):
                 numLs.append(translated)
             else:
                 print("Error! Invalid Input")

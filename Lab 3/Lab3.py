@@ -3,17 +3,17 @@ import turtle
 t = turtle.Turtle()
 #setting the clock
 def generate_clock(): #generate clock
-    t.penup()
-    t.goto(0,-150)
-    t.pendown()
     radius = 150
+    t.penup()
+    t.goto(0,(-radius))
+    t.pendown()
     t.circle(radius)
     t.penup()
     t.goto(0,0) #origin at (0,0)
     angle = 0
     while angle != 360:
         t.setheading(angle)
-        t.forward(140)
+        t.forward(1)
         t.pendown()
         t.forward(20)
         t.penup()
