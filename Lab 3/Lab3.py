@@ -13,7 +13,7 @@ def generate_clock(): #generate clock
     angle = 0
     while angle != 360:
         t.setheading(angle)
-        t.forward(1)
+        t.forward(radius - 10)
         t.pendown()
         t.forward(20)
         t.penup()
@@ -24,9 +24,9 @@ def clock_hand(hours, minutes, seconds):
     t.goto(0,0) #set turtle at origin
     seconds_angle = seconds * 6
     t.setheading(0)
-    t.setheading(seconds_angle)
+    t.setheading(seconds_angle + 90)
     t.pendown()
-    t.forward(100)
+    t.forward(130)
 
 
 
