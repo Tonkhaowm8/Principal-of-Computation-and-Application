@@ -22,13 +22,16 @@ def generate_clock(): #generate clock
 
 def clock_hand(hours, minutes, seconds):
     t.goto(0,0) #set turtle at origin
+    # Seconds Hand
     seconds_angle = seconds * 6
     t.setheading(0)
     t.setheading(seconds_angle + 90)
     t.pendown()
     t.forward(130)
+    # Minutes Hand
+    minutes_hand = minutes * 6
 
 
 
 generate_clock()
-clock_hand(1,1,30)
+clock_hand(1,1,60)
