@@ -63,15 +63,15 @@ def start():
     global t 
     try:
         hour = int(input("Enter Hour: "))
-        if hour > 24:
+        if hour > 24 or hour < 0:
             print("Please enter correct hour!!")
             start()
         minutes = int(input("Enter Minutes: "))
-        if minutes > 60:
+        if minutes > 60 or hour < 0:
             print("Please enter correct minutes!!")
             start()
         seconds = int(input("Enter Seconds: "))
-        if seconds > 60:
+        if seconds > 60 or hour < 0:
             print("Please enter correct seconds!!")
             start()
         t = turtle.Turtle()
