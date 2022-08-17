@@ -31,7 +31,7 @@ def generate_clock(): #generate clock
 def clock_hand(hours, minutes, seconds):
     t.goto(0,0) #set turtle at origin
     # Seconds Hand
-    seconds_angle = -seconds * 6 + 90
+    seconds_angle = - seconds * 6 + 90
     print(seconds_angle)
     t.setheading(0)
     t.setheading(seconds_angle)
@@ -39,7 +39,7 @@ def clock_hand(hours, minutes, seconds):
     t.forward(130)
     t.penup()
     # Minutes Hand
-    minutes_hand = -minutes * 6 - seconds * 0.1 + 90
+    minutes_hand = - minutes * 6 - seconds * 0.1 + 90
     print(minutes_hand)
     t.color("Green")
     t.goto(0,0)
