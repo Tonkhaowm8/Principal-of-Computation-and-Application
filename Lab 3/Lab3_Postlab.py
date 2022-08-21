@@ -17,7 +17,7 @@ class TurtleFRO():
 
     def normal(self):
         self.t.pendown()
-        self.t.forward(self.energy)
+        self.t.forward(100)
         self.t.penup()
 
     def drunk(self):
@@ -74,7 +74,6 @@ def line_creator():
 def start():
 
     colorArr = ["Red", "Blue", "Green", "Yellow", "Black", "Brown", "Pink", "Orange"]
-
    
     try:
         numTurtle = int(input("Enter number of turtles: "))
@@ -84,6 +83,17 @@ def start():
     if numTurtle < 1 or numTurtle > 5:
         print("The number of turtle cannot be less than 1 and exceed 5")
         start()
+
+    inputArr = []
+    for i in range(numTurtle):
+        try:
+            userSelection = int(input("(1) Normal Turtle (2) Drunk Turtle (3) On Crack Turtle (4) Autistic Turtle (5) Fat Turtle: "))
+            if userSelection < 0 or userSelection > 5:
+                print("Please enter the value between 1 - 5!!!")
+            inputArr.append(userSelection)
+        except ValueError:
+            print("Please enter a number!!")
+            start()
 
     turtle.screensize(canvwidth=500, canvheight=500)
     line_creator()
@@ -97,16 +107,25 @@ def start():
         t = np.linspace(0, 500, numTurtle + 2)
         turtle_list[i].setPos(t[i+1])
 
-    typeTurtle = ["normal", "drunk", "on_crack", "autistic", "fat"]
-    a = random.randint(0,len(typeTurtle)-1)
     finish = False
-    for i in range(100): #
+    for i in range(100): 
         for j in range(len(turtle_list)):
             if turtle_list[j].getPos() >= 400:
                 finish = True
                 break
-            else:
+            elif inputArr[j] == 1:
+                turtle_list[j].normal()
+            elif inputArr[j] == 2:
+                turtle_list[j].drunk()
+            elif inputArr[j] == 3:
+                turtle_list[j].on_crack()
+            elif inputArr[j] == 4:
+                turtle_list[j].autistic()
+            elif inputArr[j] == 5:
                 turtle_list[j].fat()
+            else:
+                continue
+                
         if finish:
             break
     if finish:
