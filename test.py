@@ -1,4 +1,5 @@
-import numpy as np
+import turtle
 
-t = np.linspace(0,500,4)
-print(t)
+while True:
+    turtle.Turtle()
+    turtle.forward(0)

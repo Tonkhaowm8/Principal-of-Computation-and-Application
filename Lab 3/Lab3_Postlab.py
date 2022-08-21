@@ -46,13 +46,28 @@ class TurtleFRO():
         self.t.pendown()
         self.t.forward(random.randint(0, 20))
         self.t.penup()
+
 turtle_list = list()
+
+def line_creator():
+    t = turtle.Turtle()
+    t.penup()
+    t.goto(-400, -500)
+    t.setheading(90)
+    t.pendown()
+    t.forward(1000)
+    t.penup()
+    t.goto(400, -500)
+    t.setheading(90)
+    t.pendown()
+    t.forward(1000)
+    t.penup()
 
 def start():
 
     colorArr = ["Red", "Blue", "Green", "Yellow", "Black", "Brown", "Pink", "Orange"]
 
-    turtle.screensize(canvwidth=500, canvheight=500)
+   
     try:
         numTurtle = int(input("Enter number of turtles: "))
     except ValueError:
@@ -61,17 +76,22 @@ def start():
     if numTurtle < 1 or numTurtle > 5:
         print("The number of turtle cannot be less than 1 and exceed 5")
         start()
+
+    turtle.screensize(canvwidth=500, canvheight=500)
+    line_creator()
     
     for i in range(numTurtle):
         randNum = random.randint(0,len(colorArr)-1)
         turtle_list.append(TurtleFRO(10, colorArr[randNum]))
         colorArr.pop(randNum)
 
-    for i in range(len(turtle_list)): #
+    for i in range(len(turtle_list)): #evenly distribute turtles using numpy
         t = np.linspace(0, 500, numTurtle + 2)
         turtle_list[i].setPos(t[i+1])
 
-    for i in range(100):
+    typeTurtle = ["normal", "drunk", "on_crack", "autistic", "fat"]
+    a = random.randint(0,len(typeTurtle)-1)
+    for i in range(100): #
         for j in range(len(turtle_list)):
             turtle_list[j].fat()
 
