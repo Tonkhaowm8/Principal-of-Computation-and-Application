@@ -11,35 +11,47 @@ class TurtleFRO():
         self.t = turtle.Turtle(shape="turtle")
         self.t.color(color)
 
+    def setPos(self, position):
+        self.t.penup()
+        self.t.goto(-400 , position - 250)
+
     def normal(self):
         self.t.pendown()
         self.t.forward(self.energy)
         self.t.penup()
 
     def drunk(self):
+        self.t.speed(3)
         self.t.setheading(random.randint(-360, 360))
         self.t.pendown()
         self.t.forward(random.randint(-50, 100))
         self.t.penup()
-        self.t.speed(3)
 
     def on_crack(self):
+        self.t.speed(10)
         self.t.setheading(random.randint(-45, 45))
         self.t.pendown()
         self.t.forward(random.randint(0, 100))
         self.t.penup()
-        self.t.speed(10)
-
+        
     def autistic(self):
+        self.t.speed(5)
         self.t.setheading(random.randint(-30, 30))
         self.t.pendown()
         self.t.forward(random.randint(-10, 20))
         self.t.penup()
-        self.t.speed(5)
 
+    def fat(self):
+        self.t.speed(5)
+        self.t.pendown()
+        self.t.forward(random.randint(0, 20))
+        self.t.penup()
 turtle_list = list()
 
 def start():
+
+    colorArr = ["Red", "Blue", "Green", "Yellow", "Black", "Brown", "Pink", "Orange"]
+
     turtle.screensize(canvwidth=500, canvheight=500)
     try:
         numTurtle = int(input("Enter number of turtles: "))
@@ -49,15 +61,21 @@ def start():
     if numTurtle < 1 or numTurtle > 5:
         print("The number of turtle cannot be less than 1 and exceed 5")
         start()
-    return numTurtle
+    
+    for i in range(numTurtle):
+        randNum = random.randint(0,len(colorArr)-1)
+        turtle_list.append(TurtleFRO(10, colorArr[randNum]))
+        colorArr.pop(randNum)
+
+    for i in range(len(turtle_list)): #
+        t = np.linspace(0, 500, numTurtle + 2)
+        turtle_list[i].setPos(t[i+1])
+
+    for i in range(100):
+        for j in range(len(turtle_list)):
+            turtle_list[j].fat()
+
+
 
 start()
-colorArr = ["Red", "Blue", "Green", "Yellow", "Black", "Brown", "Pink", "Orange"]
-for i in range(5):
-    randNum = random.randint(0,len(colorArr)-1)
-    turtle_list.append(TurtleFRO(10, colorArr[randNum]))
-    colorArr.pop(randNum)
 
-for i in range(100):
-    for j in range(len(turtle_list)):
-        turtle_list[j].autistic()
