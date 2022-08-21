@@ -4,7 +4,7 @@ from mimetypes import init
 from re import T
 import turtle
 import random
-
+import numpy as np
 
 class TurtleFRO():
     def __init__ (self, energy, color):
@@ -33,18 +33,31 @@ class TurtleFRO():
     def autistic(self):
         self.t.setheading(random.randint(-30, 30))
         self.t.pendown()
-        self.t.forward(random.randint(-50, 10))
+        self.t.forward(random.randint(-10, 20))
         self.t.penup()
         self.t.speed(5)
 
 turtle_list = list()
 
+def start():
+    turtle.screensize(canvwidth=500, canvheight=500)
+    try:
+        numTurtle = int(input("Enter number of turtles: "))
+    except ValueError:
+        print("Please enter a number!!!")
+        start()
+    if numTurtle < 1 or numTurtle > 5:
+        print("The number of turtle cannot be less than 1 and exceed 5")
+        start()
+    return numTurtle
+
+start()
+colorArr = ["Red", "Blue", "Green", "Yellow", "Black", "Brown", "Pink", "Orange"]
 for i in range(5):
-    turtle_list.append(TurtleFRO(10, "Green"))
+    randNum = random.randint(0,len(colorArr)-1)
+    turtle_list.append(TurtleFRO(10, colorArr[randNum]))
+    colorArr.pop(randNum)
 
 for i in range(100):
     for j in range(len(turtle_list)):
-        if j % 2 == 0:
-            turtle_list[j].drunk()
-        else:
-            turtle_list[j].on_crack()
+        turtle_list[j].autistic()
