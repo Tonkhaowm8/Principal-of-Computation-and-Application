@@ -108,8 +108,10 @@ def start():
             else:
                 turtle_list[j].fat()
         if finish:
-            for k in turtle_list:
-                k.stop()
+            break
+    if finish:
+        for k in turtle_list:
+            k.stop()
 
 start()
 
