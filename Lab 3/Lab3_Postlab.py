@@ -47,6 +47,13 @@ class TurtleFRO():
         self.t.forward(random.randint(0, 20))
         self.t.penup()
 
+    def getPos(self):
+        t = self.t.pos()
+        return t[0]
+
+    def stop(self):
+        self.t.forward(0)
+
 turtle_list = list()
 
 def line_creator():
@@ -62,6 +69,7 @@ def line_creator():
     t.pendown()
     t.forward(1000)
     t.penup()
+
 
 def start():
 
@@ -91,11 +99,17 @@ def start():
 
     typeTurtle = ["normal", "drunk", "on_crack", "autistic", "fat"]
     a = random.randint(0,len(typeTurtle)-1)
+    finish = False
     for i in range(100): #
         for j in range(len(turtle_list)):
-            turtle_list[j].fat()
-
-
+            if turtle_list[j].getPos() >= 400:
+                finish = True
+                break
+            else:
+                turtle_list[j].fat()
+        if finish:
+            for k in turtle_list:
+                k.stop()
 
 start()
 
