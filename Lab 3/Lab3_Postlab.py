@@ -5,8 +5,8 @@ import random
 
 
 class TurtleFRO():
-    def __init__ (self, energy, color, position):
-        self.t = turtle.Turtle()
+    def __init__ (self, energy, color):
+        self.t = turtle.Turtle(shape = "turtle")
         self.color = turtle.color(color)
         self.energy = energy
 
@@ -23,6 +23,8 @@ class TurtleFRO():
             self.move = turtle.forward(self.stamina)
             self.energy = self.energy - abs(self.stamina)
         self.penup = turtle.penup()
+
+turtle_list = list()
 
 normalTurtle = TurtleFRO(500, "Green")
 normalTurtle.normal()
