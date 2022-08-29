@@ -1,6 +1,7 @@
 from matplotlib import pyplot as plt
 import math
 import random
+import timeit
 
 class Point:
     def __init__(self, x_init, y_init):
@@ -25,19 +26,23 @@ class Point:
         return d
 
     def findClosest(self, point):
-        closest = 100
+        closest = 10000
         firstCoords = []
         secondCoords = []
         for i in range(len(point)):
             for j in range (len(point)):
-                deltaX, deltaY = abs(point[j].get_x() - point[i].get_x()) ,abs(point[j].get_y() - point[i].get_y())
+                x1 = point[j].get_x()
+                x2 = point[i].get_x()
+                y1 = point[j].get_y()
+                y2 = point[i].get_y()
+                deltaX, deltaY = abs(x1 - x2) ,abs(y1 - y2)
                 totalCoords = deltaX + deltaY
-                if totalCoords < closest:
+                if totalCoords < closest and x1 != x2:
                     closest = totalCoords
-                    firstCoords, secondCoords = [point[j].get_x, point[j].get_y] , [point[i].get_x, point[i].get_y]
+                    outputCoords = [[x1, y1] , [x2, y2]]
                 else:
                     continue
-        return firstCoords, secondCoords
+        return outputCoords
         
 
 def start():
@@ -45,15 +50,19 @@ def start():
     pointInput = int(input("Enter the number of Points: "))
     xArr, yArr = [], []
     for i in range(pointInput):
-        xArr.append(random.randint(0, 1000))
-        yArr.append(random.randint(0, 1000))
+        xArr.append(random.randint(0, 100000))
+        yArr.append(random.randint(0, 100000))
         p = Point(xArr[i], yArr[i])
         coords.append(p)
+    startTime = timeit.default_timer()
     closest = p.findClosest(coords)
+    endTime = timeit.default_timer()
+    print(f"runtime is {round(endTime - startTime, 3)} seconds")
     while 1:
         plt.plot(xArr, yArr, 'ro')
-        plt.plot(closest[0][0], closest[0][1], 'ro', color = 'blue')
-        plt.plot(closest[1][0], closest[1][1], 'ro', color = 'blue')
+        plt.plot([closest[0][0],closest[1][0]], [closest[0][1],closest[1][1]], color = 'blue')
+        plt.plot(closest[0][0],closest[0][1], 'ro', color = 'blue')
+        plt.plot(closest[1][0],closest[1][1], 'ro', color = 'blue')
         plt.show()
 
 start()
