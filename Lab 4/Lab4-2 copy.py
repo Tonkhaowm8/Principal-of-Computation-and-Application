@@ -29,6 +29,8 @@ class Point:
         closest = 10000
         firstCoords = []
         secondCoords = []
+        totalDict = {}
+        smallest = 0
         for i in range(len(point)):
             for j in range (len(point)):
                 x1 = point[j].get_x()
@@ -37,12 +39,17 @@ class Point:
                 y2 = point[i].get_y()
                 deltaX, deltaY = abs(x1 - x2) ,abs(y1 - y2)
                 totalCoords = deltaX + deltaY
-                if totalCoords < closest and x1 != x2:
-                    closest = totalCoords
-                    outputCoords = [[x1, y1] , [x2, y2]]
-                else:
+                totalDict[totalCoords] = [[x1, y1], [x2, y2]]
+        for i in range(100000):
+            try:
+                smallest = totalDict[i]
+                if smallest[0][0] == smallest[1][0]:
                     continue
-        return outputCoords
+                else:
+                    break
+            except:
+                continue
+        return smallest
         
 
 def start():
