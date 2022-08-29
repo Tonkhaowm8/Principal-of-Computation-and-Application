@@ -30,7 +30,7 @@ class Point:
         secondCoords = []
         for i in range(len(point)):
             for j in range (len(point)):
-                deltaX, deltaY = abs(point[j].get_x - point[i].get_x) ,abs(point[j].get_y - point[i].get_y)
+                deltaX, deltaY = abs(point[j].get_x() - point[i].get_x()) ,abs(point[j].get_y() - point[i].get_y())
                 totalCoords = deltaX + deltaY
                 if totalCoords < closest:
                     closest = totalCoords
@@ -52,8 +52,8 @@ def start():
     closest = p.findClosest(coords)
     while 1:
         plt.plot(xArr, yArr, 'ro')
-        plt.plot(closest[0], 'ro', color = 'blue')
-        plt.plot(closest[1], 'ro', color = 'blue')
+        plt.plot(closest[0][0], closest[0][1], 'ro', color = 'blue')
+        plt.plot(closest[1][0], closest[1][1], 'ro', color = 'blue')
         plt.show()
 
 start()
