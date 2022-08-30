@@ -57,11 +57,11 @@ def start(pt):
     endTime = timeit.default_timer()
     deltaT = endTime - startTime
     print(f"runtime is {round(deltaT, 3)}")
-    #plt.plot(xArr, yArr, 'ro')
-    #plt.plot([closest[0][0],closest[1][0]], [closest[0][1],closest[1][1]], color = 'blue')
-    #plt.plot(closest[0][0],closest[0][1], 'ro', color = 'blue')
-    #plt.plot(closest[1][0],closest[1][1], 'ro', color = 'blue')
-    #plt.show()
+    plt.plot(xArr, yArr, 'ro')
+    plt.plot([closest[0][0],closest[1][0]], [closest[0][1],closest[1][1]], color = 'blue')
+    plt.plot(closest[0][0],closest[0][1], 'ro', color = 'blue')
+    plt.plot(closest[1][0],closest[1][1], 'ro', color = 'blue')
+    plt.show()
     return deltaT
 
 #plotting big O
