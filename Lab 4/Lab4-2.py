@@ -21,9 +21,8 @@ class Point:
         return "(%s, %s)" % (self.x, self.y)
 
     def distance(self, a, b, c, d):
-        x_distance = 0
         dis = math.sqrt((a-c)**2+(b-d)**2)
-        return d
+        return dis
 
     def findClosest(self, point):
         closest = 10000
