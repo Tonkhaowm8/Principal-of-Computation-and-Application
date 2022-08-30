@@ -27,8 +27,6 @@ class Point:
 
     def findClosest(self, point):
         closest = 10000
-        firstCoords = []
-        secondCoords = []
         for i in range(len(point)):
             for j in range (len(point)):
                 x1 = point[j].get_x()
@@ -45,9 +43,9 @@ class Point:
         return outputCoords
         
 
-def start():
+def start(pt):
     coords = []
-    pointInput = int(input("Enter the number of Points: "))
+    pointInput = pt
     xArr, yArr = [], []
     for i in range(pointInput):
         xArr.append(random.randint(0, 1000))
@@ -57,12 +55,23 @@ def start():
     startTime = timeit.default_timer()
     closest = p.findClosest(coords)
     endTime = timeit.default_timer()
-    print(f"runtime is {round(endTime - startTime, 3)}")
-    while 1:
-        plt.plot(xArr, yArr, 'ro')
-        plt.plot([closest[0][0],closest[1][0]], [closest[0][1],closest[1][1]], color = 'blue')
-        plt.plot(closest[0][0],closest[0][1], 'ro', color = 'blue')
-        plt.plot(closest[1][0],closest[1][1], 'ro', color = 'blue')
-        plt.show()
+    deltaT = endTime - startTime
+    print(f"runtime is {round(deltaT, 3)}")
+    #plt.plot(xArr, yArr, 'ro')
+    #plt.plot([closest[0][0],closest[1][0]], [closest[0][1],closest[1][1]], color = 'blue')
+    #plt.plot(closest[0][0],closest[0][1], 'ro', color = 'blue')
+    #plt.plot(closest[1][0],closest[1][1], 'ro', color = 'blue')
+    #plt.show()
+    return deltaT
 
-start()
+#plotting big O
+t = []
+n = []
+for i in range(10,1000,100):
+    t.append(start(i))
+    n.append(i)
+while 1:
+    plt.plot(n,t)
+    plt.xlabel("n")
+    plt.ylabel("time (Seconds)")
+    plt.show()
