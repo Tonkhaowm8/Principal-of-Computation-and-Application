@@ -1,5 +1,5 @@
 import timeit
-import matplotlib as mp
+from matplotlib import pyplot as plt
 
 
 def normal_fibo(n):
@@ -22,10 +22,13 @@ def fibo_rec(n):
 
 
 #n = int(input("Input n : "))
-
-#StartTime = timeit.default_timer()
-#normal = normal_fibo(n)
-#StopTime = timeit.default_timer()
+xNormal = []
+yNormal = []
+for i in range(0,1000,10):
+    StartTime = timeit.default_timer()
+    normal = normal_fibo(i)
+    StopTime = timeit.default_timer()
+    plt.plot(i, StopTime - StartTime)
 #print(f"Iterative fibo result is {normal_fibo(n)} with runtime of {round(StopTime - StartTime, 10)}")
 #StartTime = timeit.default_timer()
 #normal = fibo_rec(n)
