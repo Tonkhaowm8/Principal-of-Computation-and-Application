@@ -28,7 +28,11 @@ for i in range(0,1000,10):
     StartTime = timeit.default_timer()
     normal = normal_fibo(i)
     StopTime = timeit.default_timer()
-    plt.plot(i, StopTime - StartTime)
+    xNormal.append(i)
+    yNormal.append(StopTime - StartTime)
+for i in range(len(xNormal)):
+    plt.plot(xNormal, yNormal)
+    plt.show()
 #print(f"Iterative fibo result is {normal_fibo(n)} with runtime of {round(StopTime - StartTime, 10)}")
 #StartTime = timeit.default_timer()
 #normal = fibo_rec(n)
