@@ -1,5 +1,5 @@
-import turtle
+def gay(m):
+    m = m + 1
+    return m
 
-while True:
-    turtle.Turtle()
-    turtle.forward(0)
+print(gay(gay(gay(0))))
