@@ -1,9 +1,11 @@
 #64011614 Siraphop Mukdaphetcharat
 import turtle
 
-t = turtle.Turtle()
-
-def draw(branches, t, length):
+def draw(branches, length):
+    t = turtle.Turtle()
+    t.screensize(canvwidth=500, canvheight=500)
+    t.penup()
+    t.goto(-450, 0)
     if branches != 0:
         t.pendown()
         length = length ** branches
@@ -14,11 +16,9 @@ def start():
     length = 5
     angle = 20
     first = True
-    t.screensize(canvwidth=500, canvheight=500)
-    t.penup()
-    draw(10, t, length)
-    t.goto(-450, 0)
+    draw(10, length)
+    
 
 while True:
-    start()
+    draw(10, 5)
     
