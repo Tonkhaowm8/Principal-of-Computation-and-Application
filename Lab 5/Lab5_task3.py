@@ -24,15 +24,28 @@ def fibo_rec(n):
 #n = int(input("Input n : "))
 xNormal = []
 yNormal = []
-for i in range(0,1000,10):
+xRec = []
+yRec = []
+for i in range(0,1000,100):
+    #StartTime = timeit.default_timer()
+    #normal = normal_fibo(i)
+    #StopTime = timeit.default_timer()
+    #xNormal.append(i)
+    #yNormal.append(StopTime - StartTime)
+
+
     StartTime = timeit.default_timer()
-    normal = normal_fibo(i)
+    recursive = fibo_rec(i)
     StopTime = timeit.default_timer()
-    xNormal.append(i)
-    yNormal.append(StopTime - StartTime)
-for i in range(len(xNormal)):
-    plt.plot(xNormal, yNormal)
-    plt.show()
+    xRec.append(i)
+    yRec.append(StopTime - StartTime)
+
+#plt.plot(xNormal, yNormal)
+plt.plot(xRec, yRec)
+plt.xlabel("n")
+plt.ylabel("time")
+plt.title("Iterative Algorithm")
+plt.show()
 #print(f"Iterative fibo result is {normal_fibo(n)} with runtime of {round(StopTime - StartTime, 10)}")
 #StartTime = timeit.default_timer()
 #normal = fibo_rec(n)
