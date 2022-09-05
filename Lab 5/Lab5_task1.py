@@ -30,5 +30,5 @@ def start():
     #t.goto(-450, 0)
 
 while True:
-    start()
+    draw(10, 5)
     

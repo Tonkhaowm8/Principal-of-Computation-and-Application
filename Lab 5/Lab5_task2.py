@@ -1,10 +1,9 @@
 def stars(n):
     if n > 0:
-        print("*" * n)
-        print("*" * stars(n-1))
-    return (n + 1)
+        print("*" * stars(n))
+    return (n - 1)
 
-#stars(int(input("enter a number: ")))
+stars(int(input("enter a number: ")))
 
 def stars2(n):
     if n > 0:
@@ -13,4 +12,4 @@ def stars2(n):
     return (n + 1)
     
 
-stars2(int(input("enter a number: ")))
+#stars2(int(input("enter a number: ")))
