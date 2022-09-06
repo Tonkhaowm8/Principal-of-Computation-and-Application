@@ -1,3 +1,4 @@
+#64011614 Siraphop Mukdaphetcharat
 def stars(n):
     if n > 0:
         print("*" * n)
