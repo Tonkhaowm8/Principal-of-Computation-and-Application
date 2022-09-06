@@ -1,7 +1,6 @@
 import timeit
 from matplotlib import pyplot as plt
 
-
 def normal_fibo(n):
     a = 0
     b = 1
@@ -26,12 +25,12 @@ xNormal = []
 yNormal = []
 xRec = []
 yRec = []
-for i in range(0,1000,100):
-    #StartTime = timeit.default_timer()
-    #normal = normal_fibo(i)
-    #StopTime = timeit.default_timer()
-    #xNormal.append(i)
-    #yNormal.append(StopTime - StartTime)
+for i in range(0,30):
+    StartTime = timeit.default_timer()
+    normal = normal_fibo(i)
+    StopTime = timeit.default_timer()
+    xNormal.append(i)
+    yNormal.append(StopTime - StartTime)
 
 
     StartTime = timeit.default_timer()
@@ -40,11 +39,11 @@ for i in range(0,1000,100):
     xRec.append(i)
     yRec.append(StopTime - StartTime)
 
-#plt.plot(xNormal, yNormal)
+plt.plot(xNormal, yNormal)
 plt.plot(xRec, yRec)
 plt.xlabel("n")
 plt.ylabel("time")
-plt.title("Iterative Algorithm")
+plt.title("Recursive Algorithm")
 plt.show()
 #print(f"Iterative fibo result is {normal_fibo(n)} with runtime of {round(StopTime - StartTime, 10)}")
 #StartTime = timeit.default_timer()

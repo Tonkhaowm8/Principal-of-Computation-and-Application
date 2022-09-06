@@ -11,6 +11,5 @@ def stars2(n, a = 1):
         print('*' * a)
         stars2(n, a + 1)
         print('*' * a)
-    
 
 stars2(int(input("enter a number: ")))
