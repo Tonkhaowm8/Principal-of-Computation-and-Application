@@ -56,9 +56,9 @@ class Line():
 
     def draw(self):
             self.t.penup()
-            self.t.goto(self.point2.get_x(), self.point2.get_y())
-            self.t.pendown()
             self.t.goto(self.point1.get_x(), self.point1.get_y())
+            self.t.pendown()
+            self.t.goto(self.point2.get_x(), self.point2.get_y())
             self.t.penup()
 
     def join(self, line2):
@@ -66,7 +66,7 @@ class Line():
         self.t.penup()
         self.t.goto(points[0].get_x(), points[0].get_y())
         self.t.pendown()
-        self.t.goto(self.point1.get_x(), self.point1.get_y())
+        self.t.goto(self.point2.get_x(), self.point2.get_y())
 
 class LineTester():
     def __init__(self, t):
