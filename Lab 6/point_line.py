@@ -43,51 +43,63 @@ class Point:
         return outputCoords
 
 class Line():
-    def __init__(self, point1, point2):
+    def __init__(self, point1, point2, t):
         self.point1 = point1
         self.point2 = point2
+        self.t = t
+
+    def get_point(self):
+        return(self.point1, self.point2)
 
     def __str__(self):
         return "(%s, %s)" % (self.point1, self.point2) 
 
-    def draw(self, t):
-        if self.point1.get_x() > self.point2.get_x():
-            t.penup()
-            t.goto(self.point1.get_x(), self.point1.get_y())
-            t.pendown()
-            t.goto(self.point2.get_x(), self.point2.get_y())
-            return(self.point2)
-        else:
-            t.penup()
-            t.goto(self.point2.get_x(), self.point2.get_y())
-            t.pendown()
-            t.goto(self.point1.get_x(), self.point1.get_y())
-            return(self.point1)
+    def draw(self):
+            self.t.penup()
+            self.t.goto(self.point2.get_x(), self.point2.get_y())
+            self.t.pendown()
+            self.t.goto(self.point1.get_x(), self.point1.get_y())
+            self.t.penup()
 
-    #def join(self, line2):
+    def join(self, line2):
+        points = line2.get_point()
+        self.t.penup()
+        self.t.goto(points[0].get_x(), points[0].get_y())
+        self.t.pendown()
+        self.t.goto(self.point1.get_x(), self.point1.get_y())
 
-#class 
+class LineTester():
+    def __init__(self, t):
+        self.t = t
+    
+    def test_join(self, points):
+        pointArr = []
+        lineArr = []
+        # generating points
+        for i in range(points):
+            x = random.randint(-400, 400)
+            y = random.randint(-400, 400)
+            self.t.penup()
+            self.t.goto(x,y)
+            self.t.dot()
+            self.t.write(f"P{i + 1}")
+            pointArr.append(Point(x, y))
+
+        for i in range(len(pointArr)):
+            if i % 2 == 0:
+                l = Line(pointArr[i], pointArr[i + 1], self.t)
+                l.draw()
+                lineArr.append(l)
+        
+        for i in range(len(lineArr)):
+            joinLine = lineArr[i].join(lineArr[i + 1])
+        
 
 def start():
     t = turtle.Turtle()
     turtle.screensize(canvwidth=500, canvheight=500)
-    numPoint = random.randint(2, 10)
-    pointArr = []
-    for i in range(numPoint):
-        x = random.randint(-400, 400)
-        y = random.randint(-400, 400)
-        t.penup()
-        t.goto(x,y)
-        t.dot()
-        pointArr.append(Point(x, y))
-    
-    for i in range(len(pointArr)):
-        try:
-            line = Line(pointArr[i], pointArr[i + 1])
-            line.draw(t)
-        except:
-            while 1:
-                hello = 0
+    tester = LineTester(t)
+    tester.test_join(10)
 
 start()
 
