@@ -72,7 +72,10 @@ class LineTester():
                 lineArr.append(l)
         
         for i in range(len(lineArr)):
-            joinLine = lineArr[i].join(lineArr[i + 1])
+            try:
+                joinLine = lineArr[i].join(lineArr[i + 1])
+            except:
+                continue
         
 
 def start():
