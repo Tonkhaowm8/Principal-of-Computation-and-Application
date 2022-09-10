@@ -42,7 +42,7 @@ class Point:
                     continue
         return outputCoords
 
-class Line(Point):
+class Line():
     def __init__(self, point1, point2):
         self.point1 = point1
         self.point2 = point2
@@ -65,6 +65,8 @@ class Line(Point):
             return(self.point1)
 
     #def join(self, line2):
+
+#class 
 
 def start():
     t = turtle.Turtle()
