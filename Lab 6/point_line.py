@@ -21,26 +21,6 @@ class Point:
     def __str__(self):
         return "(%s, %s)" % (self.x, self.y)
 
-    def distance(self, a, b):
-        dis = math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2)
-        return dis
-
-    def findClosest(self, point):
-        closest = 10000
-        for i in range(len(point)):
-            for j in range (len(point)):
-                x1 = point[j].get_x()
-                x2 = point[i].get_x()
-                y1 = point[j].get_y()
-                y2 = point[i].get_y()
-                deltaX, deltaY = abs(x1 - x2) ,abs(y1 - y2)
-                totalCoords = deltaX + deltaY
-                if totalCoords < closest and x1 != x2:
-                    closest = totalCoords
-                    outputCoords = [[x1, y1] , [x2, y2]]
-                else:
-                    continue
-        return outputCoords
 
 class Line():
     def __init__(self, point1, point2, t):
