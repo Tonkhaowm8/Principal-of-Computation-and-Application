@@ -22,7 +22,7 @@ class Point:
         return "(%s, %s)" % (self.x, self.y)
 
     def distance(self, a, b):
-        dis = math.sqrt((a-self.x)**2+(b-self.y)**2)
+        dis = math.sqrt((a[0]-b[0])**2+(a[1]-b[1])**2)
         return dis
 
     def findClosest(self, point):
@@ -46,8 +46,47 @@ class Line(Point):
     def __init__(self, point1, point2):
         self.point1 = point1
         self.point2 = point2
-    def __str__(self):
-        return "(%s, %s)" % (self.x, self.y)
 
-    def join(self, line2):
+    def __str__(self):
+        return "(%s, %s)" % (self.point1, self.point2) 
+
+    def draw(self, t):
+        if self.point1.get_x() > self.point2.get_x():
+            t.penup()
+            t.goto(self.point1.get_x(), self.point1.get_y())
+            t.pendown()
+            t.goto(self.point2.get_x(), self.point2.get_y())
+            return(self.point2)
+        else:
+            t.penup()
+            t.goto(self.point2.get_x(), self.point2.get_y())
+            t.pendown()
+            t.goto(self.point1.get_x(), self.point1.get_y())
+            return(self.point1)
+
+    #def join(self, line2):
+
+def start():
+    t = turtle.Turtle()
+    turtle.screensize(canvwidth=500, canvheight=500)
+    numPoint = random.randint(2, 10)
+    pointArr = []
+    for i in range(numPoint):
+        x = random.randint(-400, 400)
+        y = random.randint(-400, 400)
+        t.penup()
+        t.goto(x,y)
+        t.dot()
+        pointArr.append(Point(x, y))
+    
+    for i in range(len(pointArr)):
+        try:
+            line = Line(pointArr[i], pointArr[i + 1])
+            line.draw(t)
+        except:
+            while 1:
+                hello = 0
+
+start()
+
         

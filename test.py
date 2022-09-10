@@ -1,5 +1,6 @@
-def gay(m):
-    m = m + 1
-    return m
+import turtle
 
-print(gay(gay(gay(0))))
+t = turtle.Turtle(shape = "turtle")
+
+while 1:
+    t.goto(200, 200)
