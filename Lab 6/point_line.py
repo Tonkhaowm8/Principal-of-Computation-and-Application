@@ -43,12 +43,11 @@ class Point:
         return outputCoords
 
 class Line(Point):
-    def __init__(self, x_init, y_init):
-        super().__init__(x_init, y_init)
-
+    def __init__(self, point1, point2):
+        self.point1 = point1
+        self.point2 = point2
     def __str__(self):
         return "(%s, %s)" % (self.x, self.y)
 
-    def join(self, line2, t):
-        line1 = []
-        lineDistance = line2.distance(self.x, self.y)
+    def join(self, line2):
+        
