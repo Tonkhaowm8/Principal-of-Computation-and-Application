@@ -23,15 +23,20 @@ class Point:
 
 
 class Line():
-    def __init__(self, pointLs):
+    def __init__(self, pointLs, t):
         self.pointLs = pointLs
+        self.turtle = t
 
     def __str__(self):
         return self.pointLs
 
-    def draw(self, t):
-        
-
+    def draw(self):
+        for i in self.pointLs:
+            self.turtle.penup()
+            x, y = i.get_x(), i.get_y()
+            self.turtle.pendown()
+            self.turtle.goto(x, y)
+            self.turtle.penup()
     
 
         
