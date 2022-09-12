@@ -47,6 +47,7 @@ class Line():
         self.t.goto(points[0].get_x(), points[0].get_y())
         self.t.pendown()
         self.t.goto(self.point2.get_x(), self.point2.get_y())
+#hello
 
 class LineTester():
     def __init__(self, t):
