@@ -143,10 +143,11 @@ class line_tester():
   def __init__(self, t):
     self.t = t
 
-  def joinLineTester(self, noLine, noPts):
+  def joinLineTester(self, noLine):
     lineLs = []
     for j in range(noLine):
       pointLs = []
+      noPts = int(input("Enter amount of point: "))
       for i in range(noPts):
         x, y = random.randint(-200, 200), random.randint(-200, 200)
         pointLs.append(Point(x,y))
@@ -173,16 +174,14 @@ class line_tester():
       
 def start():
   t = turtle.Turtle()
-  #turtle.screensize(canvwidth=500, canvheight=500)
+  turtle.screensize(canvwidth=500, canvheight=500)
   userInput = int(input("Enter question No: "))
   
   if userInput == 1:
     tester = line_tester(t)
     noLine = int(input('Enter number of lines: '))
-    noPts = int(input('Enter the number of points: '))
     inputMode = int(input("Enter mode: "))
-    linels = tester.joinLineTester(noLine, noPts)
-    
+    linels = tester.joinLineTester(noLine)
     if inputMode == 1:
       for i in range(len(linels)):
         try:
