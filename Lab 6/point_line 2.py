@@ -96,13 +96,18 @@ class Line():
         length = len(ptsList)
       for i in range(length):
         try:
-          line3.append(self.pointLs[i])
-          line3.append(ptsList[i])
+          line3.append(self.pointLs[0])
+          self.pointLs.pop(0)
+          line3.append(ptsList[0])
+          ptsList.pop(0)
         except:
           try:
-            line3.append(ptsList[i])
+            line3.append(ptsList[0])
+            ptsList.pop(0)
           except:
+            ptsList.pop(0)
             continue
+      
       
       for i in range(len(line3)):
         try:
@@ -113,7 +118,7 @@ class Line():
           self.turtle.penup()
         except:
           continue
-      return line3
+      return self.pointLs, ptsList
       
     def zigzag2(self, line1):
       ptList = line1.getPts()
@@ -130,11 +135,13 @@ class Line():
       for i in range(len(self.pointLs)):
         try:
           self.turtle.penup()
-          self.turtle.goto(self.pointLs[i].get_x(), self.pointLs[i].get_y())
+          self.turtle.goto(self.pointLs[0].get_x(), self.pointLs[0].get_y())
           self.turtle.pendown()
-          self.turtle.goto(self.pointLs[i+1].get_x(), self.pointLs[i+1].get_y())
+          self.turtle.goto(self.pointLs[1].get_x(), self.pointLs[1].get_y())
           self.turtle.penup()
+          self.pointLs.pop(0)
         except:
+          self.pointLs.pop(0)
           continue
       return self.pointLs
       
@@ -174,6 +181,7 @@ class line_tester():
       
 def start():
   t = turtle.Turtle()
+  t.speed(1)
   turtle.screensize(canvwidth=500, canvheight=500)
   userInput = int(input("Enter question No: "))
   
@@ -200,10 +208,12 @@ def start():
     tester = line_tester(t)
     lineLs = tester.zigzag1Tester()
     line3 = lineLs[0].zigzag1(lineLs[1])
+    print(f"The length of line 1 is: {len(line3[0])}")
+    print(f"The length of line 2 is: {len(line3[1])}")
     
   elif userInput == 3:
     tester = line_tester(t)
     lineLs = tester.zigzag1Tester()
-    lineLs[0].zigzag2(lineLs[1])
+    print(f"The length of line 2 is: {len(lineLs[0].zigzag2(lineLs[1]))}")
   
 start()
