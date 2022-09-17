@@ -49,4 +49,5 @@ class parking:
                 for j in range(carList.size()):
                     self.parkingLot.push(carList.pop())
 
-    
+def start():
+    userInput = int(input("Enter how many cars you want to park"))
