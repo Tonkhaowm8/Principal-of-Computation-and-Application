@@ -38,5 +38,15 @@ class parking:
         self.parkingLot.push(car)
 
     def backOut(self, car):
-        try:
-            
+        if self.parkingLot.contain(car):
+            carList = stack()
+            for i in range(self.parkingLot.size()):
+                if car == self.parkingLot.peek():
+                    self.parkingLot.pop()
+                    break
+                else:
+                    carList.push(self.parkingLot.pop())
+                for j in range(carList.size()):
+                    self.parkingLot.push(carList.pop())
+
+    
