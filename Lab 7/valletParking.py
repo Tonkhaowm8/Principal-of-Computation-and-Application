@@ -1,3 +1,5 @@
+# Siraphop Mukdaphetcharat 64011614
+
 class stack:
     def __init__(self):
         self.stack = []
@@ -27,3 +29,14 @@ class stack:
             return True
         else:
             return False
+
+class parking:
+    def __init__(self):
+        self.parkingLot = stack()
+    
+    def park(self, car):
+        self.parkingLot.push(car)
+
+    def backOut(self, car):
+        try:
+            
