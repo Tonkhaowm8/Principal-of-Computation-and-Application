@@ -10,7 +10,7 @@ class stack:
 
     def pop(self):
         popElement = self.stack[-1]
-        self.stack.pop[-1]
+        self.stack.pop(-1)
         return popElement
 
     def peek(self):
@@ -53,8 +53,8 @@ class parking:
                     break
                 else:
                     carList.push(self.parkingLot.pop())
-                for j in range(carList.size()):
-                    self.parkingLot.push(carList.pop())
+            for j in range(carList.size()):
+                self.parkingLot.push(carList.pop())
 
 
 def initialize():
@@ -75,17 +75,23 @@ def initialize():
 def inputMode(soiArr):
     modeInput = int(input("1. parking, 2. backout: "))
     if modeInput == 1:
-        carInput = int(input("How many cars you want to park: "))
-        for i in range(carInput):
-            carNumber = int(input("Enter car licence plate number: "))
-            soiNum = int(input("Enter the number of soi you want to park: ")) - 1
-            soiArr[soiNum].park(carNumber)
-            print(f"Your car with the number {carNumber} has been parked!")
-            for j in soiArr:
-                print(j.returnStack().returnLs())
+        carNumber = int(input("Enter car licence plate number: "))
+        soiNum = int(input("Enter the number of soi you want to park: ")) - 1
+        soiArr[soiNum].park(carNumber)
+        print(f"Your car with the number {carNumber} has been parked!")
+        for j in soiArr:
+            print(j.returnStack().returnLs())
+    elif modeInput == 2:
+        carPlate = int(input("Enter the car number you want to backout: "))
+        print(f"Your car with the number {carPlate} has been backed out!")
+        for i in soiArr:
+            i.backOut(carPlate)
+            print(i.returnStack().returnLs())
+            
+    inputMode(soiArr)
 
 def start():
     soiArr = initialize()
-    
+    inputMode(soiArr)
 
 start()
