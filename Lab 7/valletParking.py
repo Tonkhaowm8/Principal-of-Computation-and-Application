@@ -1,4 +1,5 @@
 # Siraphop Mukdaphetcharat 64011614
+import random
 
 class stack:
     def __init__(self):
@@ -30,9 +31,15 @@ class stack:
         else:
             return False
 
+    def returnLs(self):
+        return self.stack
+
 class parking:
     def __init__(self):
         self.parkingLot = stack()
+
+    def returnStack(self):
+        return self.parkingLot
     
     def park(self, car):
         self.parkingLot.push(car)
@@ -49,5 +56,36 @@ class parking:
                 for j in range(carList.size()):
                     self.parkingLot.push(carList.pop())
 
+
+def initialize():
+    soiInput = int(input("How many soi are there to park: "))
+    soiArr = []
+    for i in range(soiInput):  
+        soiArr.append(parking())
+    for i in soiArr:
+        carNum = random.randint(0, 4)
+        for j in range(carNum):
+            carPlate = random.randint(1, 1000)
+            while i.returnStack().contain(carPlate):
+                carPlate = random.randint(1, 1000)
+            i.park(carPlate)
+        print(i.returnStack().returnLs())
+    return soiArr
+
+def inputMode(soiArr):
+    modeInput = int(input("1. parking, 2. backout: "))
+    if modeInput == 1:
+        carInput = int(input("How many cars you want to park: "))
+        for i in range(carInput):
+            carNumber = int(input("Enter car licence plate number: "))
+            soiNum = int(input("Enter the number of soi you want to park: ")) - 1
+            soiArr[soiNum].park(carNumber)
+            print(f"Your car with the number {carNumber} has been parked!")
+            for j in soiArr:
+                print(j.returnStack().returnLs())
+
 def start():
-    userInput = int(input("Enter how many cars you want to park"))
+    soiArr = initialize()
+    
+
+start()
