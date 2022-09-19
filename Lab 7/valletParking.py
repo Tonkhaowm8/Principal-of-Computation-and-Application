@@ -87,6 +87,9 @@ def inputMode(soiArr):
         for i in soiArr:
             i.backOut(carPlate)
             print(i.returnStack().returnLs())
+    else:
+        print("Enter the correct input!!!")
+        inputMode
             
     inputMode(soiArr)
 
