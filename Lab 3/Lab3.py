@@ -60,7 +60,7 @@ def clock_hand(hours, minutes, seconds):
     t.penup()
 
 def start():
-    global t 
+    global t # Set t to initiate turtle
     try:
         hour = int(input("Enter Hour: "))
         if hour > 24 or hour < 0:
