@@ -59,10 +59,32 @@ class UnorderedList:
             else:
                 previous = current
                 current = current.getNext()
-
         if previous == None:
             self.head = current.getNext()
         else:
             previous.setNext(current.getNext())
 
-    
+    def print(self):
+        try:
+            while True:
+                print(self.head.getData())
+                self.head.setData(self.head.getNext().getData())
+                self.head.setNext(self.head.getNext().getNext())
+        except:
+            return 0
+
+
+
+def start():
+    ul = UnorderedList()
+    ul.add(1)
+    ul.add(1)
+    ul.add(2)
+    ul.add(3)
+    ul.add(3)
+    ul.add(4)
+    ul.print()
+    ul.squish()
+    ul.print()
+
+start()

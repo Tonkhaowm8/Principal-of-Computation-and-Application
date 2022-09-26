@@ -6,7 +6,6 @@ def isPalindrome(string, i):
         ans = True
     return ans
 
-
 string = str(input("Input word : "))
 if (isPalindrome(string, 0)):
     print("Yes")
