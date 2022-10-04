@@ -69,22 +69,45 @@ class UnorderedList:
 
     def print(self):
         try:
+            current = self.head
             while True:
-                print(self.head.getData())
-                self.head.setData(self.head.getNext().getData())
-                self.head.setNext(self.head.getNext().getNext())
+                if current.getData() == "end":
+                    break
+                else:
+                    print(current.getData())
+                    current = current.getNext()
         except:
             return 0
 
+    def squish(self):
+        current = self.head
+        duplicates = None
+        exitt = False
+        while True:
+            if current == None:
+                break
+            while duplicates == current.getData():
+                if current.getNext() == None:
+                    current.setData("end")
+                    current.setNext(None)
+                    exitt = True
+                    break
+                else:
+                    current.setData(current.getNext().getData())
+                    current.setNext(current.getNext().getNext())
+            if exitt:
+                break
+            duplicates = current.getData()
+            try:
+                current = current.getNext()
+            except:
+                break
+                
 def start():
     ul = UnorderedList()
-    ul.add(1)
-    ul.add(1)
-    ul.add(2)
-    ul.add(3)
-    ul.add(3)
-    ul.add(4)
-    ul.print()
+    numInput = int(input("num of input: "))
+    for i in range(numInput):
+        ul.add(input("enter num: "))
     ul.squish()
     ul.print()
 
