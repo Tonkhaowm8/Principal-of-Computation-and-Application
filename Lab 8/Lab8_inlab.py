@@ -1,5 +1,8 @@
 # Siraphop Mukdaphetcharat 6401614
 
+from itsdangerous import NoneAlgorithm
+
+
 class Node: # Node Class
     def __init__(self,initdata):
         self.data = initdata
@@ -103,12 +106,29 @@ class UnorderedList:
             except:
                 break
                 
+    def dble(self):
+        current = self.head
+        while current != None:
+            dupNode = Node(current.getData())
+            try:
+                dupNode.setNext(current.getNext())
+            except:
+                dupNode.setNext(None)
+                break
+            current.setNext(dupNode)
+            current = dupNode.getNext()
+    
 def start():
     ul = UnorderedList()
     numInput = int(input("num of input: "))
     for i in range(numInput):
         ul.add(input("enter num: "))
-    ul.squish()
-    ul.print()
+    modeInput = int(input("(1) Squish, (2) Dble: "))
+    if modeInput == 1:
+        ul.squish()
+        ul.print()
+    elif modeInput == 2:
+        ul.dble()
+        ul.print()
 
 start()
