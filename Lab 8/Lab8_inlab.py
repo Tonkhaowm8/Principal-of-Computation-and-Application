@@ -77,19 +77,17 @@ class UnorderedList:
         current = self.head
         duplicates = None
         while True:
+            while duplicates == current.getData():
+                try:
+                    current.setData(current.getNext().getData())
+                    current.setNext(current.getNext().getNext())
+                except:
+                    break
+            duplicates = current.getData()
             try:
-                nextNode = current.getNext()
-                nextData = nextNode.getData()
+                current = current.getNext()
             except:
                 break
-            while duplicates == current.getData():
-                current.setData(nextData)
-                current.setNext(nextNode.getNext())
-            duplicates = current.getData()
-            current = nextNode
-
-
-
 
 def start():
     ul = UnorderedList()
