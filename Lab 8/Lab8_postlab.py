@@ -1,5 +1,8 @@
 # Siraphop Mukdaphetcharat 64011614
 
+from symbol import except_clause
+
+
 class Node: # Node Class
     def __init__(self,initdata):
         self.data = initdata
@@ -40,6 +43,14 @@ class doubleLinkedList:
             addItem.setNext(None)
             self.head = addItem
 
+    def size(self):
+        current = self.head
+        count = 0
+        while current != None:
+            count += 1
+            current = current.getPrevious()
+        return count
+
     def print(self):
         current = self.head
         while current != None:
@@ -49,9 +60,27 @@ class doubleLinkedList:
     def sort(self):
         current = self.head
         previous = current.getPrevious()
-        while current != None:
-            if current.getData() > previous.getData():
-                current
+        noSwap = True
+        while noSwap:
+            while current != None:
+                if current.getData() <= previous.getData():
+                    current = previous
+                    previous = previous.getPrevious()
+                else:
+                    high = previous
+                    try:
+                        previous.setNext(current.getNext())
+                    except:
+                        previous.setnext(None)
+                    previous.setPrevious(current.getPrevious())
+
+                    current.setNext(high.getNext())
+                    try:
+                        current.setPrevious(high.getPrevious())
+                    except:
+                        current.setPrevious(None)
+                    previous = current.getPrevious()
+                
 
     
 def start():
@@ -60,6 +89,8 @@ def start():
     for i in range(numPlayer):
         dataArr = [input("Enter Name: "), int(input("Enter score: "))]
         dbll.add(dataArr)
+    print(dbll.size())
+    dbll.sort()
     dbll.print()
 
 start()
