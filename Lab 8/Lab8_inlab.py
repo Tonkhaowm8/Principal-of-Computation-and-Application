@@ -65,24 +65,34 @@ class UnorderedList:
             previous.setNext(current.getNext())
 
     def print(self):
-        try:
-            current = self.head
-            while True:
-                print(current.getData())
-                current = current.getNext()
-        except:
-            return 0
+        ls = []
+        current = self.head
+        while True:
+            if current.getData == "end":
+                break
+            else:
+                ls.append(current.getData())
+            current = current.getNext()
+        return ls
 
     def squish(self):
         current = self.head
         duplicates = None
+        exitt = False
         while True:
+            if current == None:
+                break
             while duplicates == current.getData():
-                try:
+                if current.getNext() == None:
+                    current.setData("end")
+                    current.setNext(None)
+                    exitt = True
+                    break
+                else:
                     current.setData(current.getNext().getData())
                     current.setNext(current.getNext().getNext())
-                except:
-                    break
+            if exitt:
+                break
             duplicates = current.getData()
             try:
                 current = current.getNext()
