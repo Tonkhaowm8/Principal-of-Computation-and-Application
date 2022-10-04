@@ -65,15 +65,16 @@ class UnorderedList:
             previous.setNext(current.getNext())
 
     def print(self):
-        ls = []
-        current = self.head
-        while True:
-            if current.getData == "end":
-                break
-            else:
-                ls.append(current.getData())
-            current = current.getNext()
-        return ls
+        try:
+            current = self.head
+            while True:
+                if current.getData() == "end":
+                    break
+                else:
+                    print(current.getData())
+                    current = current.getNext()
+        except:
+            return 0
 
     def squish(self):
         current = self.head
@@ -98,7 +99,7 @@ class UnorderedList:
                 current = current.getNext()
             except:
                 break
-
+                
 def start():
     ul = UnorderedList()
     numInput = int(input("num of input: "))
