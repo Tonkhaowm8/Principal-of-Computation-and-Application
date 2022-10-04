@@ -17,7 +17,6 @@ class Node: # Node Class
     def setNext(self,newnext):
         self.next = newnext
 
-
 class UnorderedList:
 
     def __init__(self):
@@ -64,6 +63,10 @@ class UnorderedList:
         else:
             previous.setNext(current.getNext())
 
+    def deleteAfter(self, node):
+        current = node.head
+        current
+
     def print(self):
         try:
             while True:
@@ -72,8 +75,6 @@ class UnorderedList:
                 self.head.setNext(self.head.getNext().getNext())
         except:
             return 0
-
-
 
 def start():
     ul = UnorderedList()
