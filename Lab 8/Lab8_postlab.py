@@ -2,6 +2,8 @@
 
 from symbol import except_clause
 
+from sqlalchemy import false
+
 
 class Node: # Node Class
     def __init__(self,initdata):
@@ -57,15 +59,21 @@ class doubleLinkedList:
             print(current.getData())
             current = current.getPrevious()
 
-    def sort(self):
+    def sort(self, size):
         current = self.head
         previous = current.getPrevious()
-        noSwap = True
-        while noSwap:
+        swap = True
+        while swap:
+            count = 0
             while current != None:
-                if current.getData() <= previous.getData():
+                if current.getData()[1] <= previous.getData()[1]:
                     current = previous
                     previous = previous.getPrevious()
+                    if count == size:
+                        swap = False
+                        break
+                    else:
+                        count += 1
                 else:
                     high = previous
                     try:
@@ -79,7 +87,9 @@ class doubleLinkedList:
                         current.setPrevious(high.getPrevious())
                     except:
                         current.setPrevious(None)
+                    count = 0
                     previous = current.getPrevious()
+            current = self.head
                 
 
     
@@ -90,7 +100,7 @@ def start():
         dataArr = [input("Enter Name: "), int(input("Enter score: "))]
         dbll.add(dataArr)
     print(dbll.size())
-    dbll.sort()
+    dbll.sort(dbll.size())
     dbll.print()
 
 start()
