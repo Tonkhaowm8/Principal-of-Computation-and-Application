@@ -1,10 +1,5 @@
 # Siraphop Mukdaphetcharat 64011614
 
-from symbol import except_clause
-
-from sqlalchemy import false
-
-
 class Node: # Node Class
     def __init__(self,initdata):
         self.data = initdata
@@ -61,8 +56,9 @@ class doubleLinkedList:
 
     def sort(self, size):
         current = self.head
+        origiHead = self.head
+        high = current
         for i in range(size):
-            high = self.head
             for j in range(size):
                 if current == None:
                     break
@@ -71,29 +67,21 @@ class doubleLinkedList:
                 else:
                     current = current.getPrevious()
             if high != None:
-                t = 0
                 try:
                     high.getNext().setPrevious(high.getPrevious())
                 except:
-                    t += 1
                     continue
                 try:
                     high.getPrevious().setNext(high.getNext())
                 except:
-                    t += 1
                     continue
 
-            if i == 0:
-                high.setPrevious(None)
-                high.setNext(None)
-            elif i == (size - 1):
-                print("end stop")
-                high.setPrevious(None)
-                high.setNext(self.head)
-            else:
-                high.setPrevious(self.head)
-                self.head.setNext(high)
-            current = current.getPrevious()
+            high.setPrevious(self.head)
+            high.setNext(None)
+            self.head = high
+            origiHead = origiHead.getNext()
+
+            
 
     
 def start():
