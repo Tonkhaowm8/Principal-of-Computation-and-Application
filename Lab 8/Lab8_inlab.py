@@ -117,6 +117,7 @@ class UnorderedList:
                 break
             current.setNext(dupNode)
             current = dupNode.getNext()
+            print(id(current.getData())) # Check for copy by reference
     
 def start():
     ul = UnorderedList()

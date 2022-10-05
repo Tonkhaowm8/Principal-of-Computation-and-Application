@@ -61,36 +61,39 @@ class doubleLinkedList:
 
     def sort(self, size):
         current = self.head
-        previous = current.getPrevious()
-        swap = True
-        while swap:
-            count = 0
-            while current != None:
-                if current.getData()[1] <= previous.getData()[1]:
-                    current = previous
-                    previous = previous.getPrevious()
-                    if count == size:
-                        swap = False
-                        break
-                    else:
-                        count += 1
+        for i in range(size):
+            high = self.head
+            for j in range(size):
+                if current == None:
+                    break
+                elif current.getData()[1] > high.getData()[1]:
+                    high = current
                 else:
-                    high = previous
-                    try:
-                        previous.setNext(current.getNext())
-                    except:
-                        previous.setnext(None)
-                    previous.setPrevious(current.getPrevious())
+                    current = current.getPrevious()
+            if high != None:
+                t = 0
+                try:
+                    high.getNext().setPrevious(high.getPrevious())
+                except:
+                    t += 1
+                    continue
+                try:
+                    high.getPrevious().setNext(high.getNext())
+                except:
+                    t += 1
+                    continue
 
-                    current.setNext(high.getNext())
-                    try:
-                        current.setPrevious(high.getPrevious())
-                    except:
-                        current.setPrevious(None)
-                    count = 0
-                    previous = current.getPrevious()
-            current = self.head
-                
+            if i == 0:
+                high.setPrevious(None)
+                high.setNext(None)
+            elif i == (size - 1):
+                print("end stop")
+                high.setPrevious(None)
+                high.setNext(self.head)
+            else:
+                high.setPrevious(self.head)
+                self.head.setNext(high)
+            current = current.getPrevious()
 
     
 def start():
@@ -99,7 +102,7 @@ def start():
     for i in range(numPlayer):
         dataArr = [input("Enter Name: "), int(input("Enter score: "))]
         dbll.add(dataArr)
-    print(dbll.size())
+    #print(dbll.size())
     dbll.sort(dbll.size())
     dbll.print()
 
