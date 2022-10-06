@@ -55,34 +55,42 @@ class doubleLinkedList:
             current = current.getPrevious()
 
     def sort(self, size):
-        current = self.head
-        origiHead = self.head
-        high = current
+        #origiHead = self.head
+        highLs = []
         for i in range(size):
-            for j in range(size):
-                if current == None:
-                    break
-                elif current.getData()[1] > high.getData()[1]:
+            current = self.head
+            highNum = 0
+            #print(i)
+            while current != None:
+                if current.getData()[1] > highNum and current.getData()[1] not in highLs:
                     high = current
+                    highNum = current.getData()[1]
                 else:
                     current = current.getPrevious()
-            if high != None:
+            #print(high.getData())
+            current = self.head
+            while current.getData()[1] != high.getData()[1]:
+                current = current.getPrevious()
+            #print(current.getData())
+            if current.getPrevious() == None:
                 try:
-                    high.getNext().setPrevious(high.getPrevious())
+                    current.getNext().setPrevious(None)
                 except:
                     continue
-                try:
-                    high.getPrevious().setNext(high.getNext())
-                except:
-                    continue
+            elif current.getNext() == None:
+                current.getPrevious().setNext(None)
+            else:
+                current.getPrevious().setNext(current.getNext())
+                current.getNext().setPrevious(current.getPrevious())
+            
+            current.setPrevious(self.head)  
+            current.setNext(None)
+            highLs.append(current.getData()[1])
+            self.head = current
+            print(self.head.getPrevious().getData())
 
-            high.setPrevious(self.head)
-            high.setNext(None)
-            self.head = high
-            origiHead = origiHead.getNext()
 
             
-
     
 def start():
     numPlayer = int(input("Enter the amount of players: "))
@@ -91,7 +99,10 @@ def start():
         dataArr = [input("Enter Name: "), int(input("Enter score: "))]
         dbll.add(dataArr)
     #print(dbll.size())
-    dbll.sort(dbll.size())
     dbll.print()
+    print(" ")
+    dbll.sort(dbll.size())
+    #print(dbll.size())
+    #dbll.print()
 
 start()
