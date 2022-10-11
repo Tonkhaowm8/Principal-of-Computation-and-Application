@@ -27,6 +27,7 @@ class Node: # Node Class
 class doubleLinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def add(self, item):
         addItem = Node(item)
@@ -34,6 +35,7 @@ class doubleLinkedList:
             addItem.setPrevious(None)
             addItem.setNext(None)
             self.head = addItem
+            self.tail = addItem
         else:
             self.head.setNext(addItem)
             addItem.setPrevious(self.head)
@@ -48,73 +50,46 @@ class doubleLinkedList:
             current = current.getPrevious()
         return count
 
-    def print(self):
-        current = self.head
-        while current != None:
-            print(current.getData())
-            current = current.getPrevious()
-
-    def sort(self, size):
-        for i in range(size):
+    def print(self, mode):
+        if mode == 1:
             current = self.head
-            previous = current.getPrevious()
-            for j in range(size):
-                prevSwitch = False
-                nextSwitch = False
-                if current == None:
-                    break
-                if current.getData()[1] > previous.getData()[1]:
-                    if previous == None:
-                        prevSwitch = True
-                    if current.next() == None:
-                        nextSwitch = True
-                    # Previous
-                    if prevSwitch:
-                        previous.setPrevious(current)
-                        current.setPrevious(None)
+            while current != None:
+                print(current.getData())
+                current = current.getPrevious()
+        else:
+            current = self.tail
+            while current != None:
+                print(current.getData())
+                current = current.getNext()
+        
 
-                        currNext = current.getNext()
-                        prev.setNext(current)
-                        current.setNext(previous)
-                        previous.setNext(currNext)
+    def sort(self):
+        if self.head == None:
+            return 0
+        else:
+            current = self.head
+            while current.getPrevious() != None:
+                previousNode = current.getPrevious()
+                while previousNode != None:
+                    if current.getData()[1] > previousNode.getData()[1]:
+                        temp = current.getData()
+                        current.setData(previousNode.getData())
+                        previousNode.setData(temp)
+                    previousNode = previousNode.getPrevious()
+                current = current.getPrevious()
 
-                    elif nextSwitch:
-                        prev = previous.getPrevious()
-                        previous.setPrevious(current)
-                        current.setPrevious(prev)
-
-                        prev.setNext(current)
-                        current.setNext(previous)
-                        previous.setNext(None)
-                    
-                    else:
-                        #Previous
-                        prev = previous.getPrevious()
-                        current.getNext().setPrevious(current)
-                        previous.setPrevious(current)
-                        current.setPrevious(prev)
-                        # Next
-                        currNext = current.getNext()
-                        prev.setNext(current)
-                        current.setNext(previous)
-                        previous.setNext(currNext)
-                        # sortout pointers
-
-                    #print(current.getPrevious().getPrevious().getData())
-                    #print(current.getPrevious().getPrevious().getData())
-                    if i == 0:
-                        previous.setNext(None)
-                        self.head = previous
-                        previous = current.getPrevious()
-                else:
-                    current = previous
-                    previous = current.getPrevious()
-
-            #print(self.head.getData())
-        #print(self.head.getData())
-        #print(self.head.getPrevious().getData())
-        #print(self.head.getPrevious().getPrevious().getData())
-
+    def addScore(self, name, score):
+        current = self.head
+        found = True
+        while current.getData()[0] != name:
+            current = current.getNext()
+            if current == None:
+                found = False
+                break
+        if found:
+            oldData = current.getData()
+            oldData[1] = score
+            current.setData(oldData)
 
 def start():
     numPlayer = int(input("Enter the amount of players: "))
@@ -122,11 +97,17 @@ def start():
     for i in range(numPlayer):
         dataArr = [input("Enter Name: "), int(input("Enter score: "))]
         dbll.add(dataArr)
-    #print(dbll.size())
-    #dbll.print()
-    #print(" ")
-    dbll.sort(dbll.size())
-    #print(dbll.size())
     dbll.print()
+    mode = int(input("[1] Sort, [2] Add, [3] Delete: "))
+    if mode == 1:
+        dbll.sort()
+        userMode = int(input("[1] ascending, [2] decending: "))
+        dbll.print(userMode)
+    elif mode == 2:
+        name = input("Enter name of player: ")
+        score = int(input("Enter score: "))
+        dbll.addScore(name, score)
+        dbll.print(1)
+
 
 start()
