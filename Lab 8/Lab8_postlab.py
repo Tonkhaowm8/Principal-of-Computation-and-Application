@@ -27,6 +27,7 @@ class Node: # Node Class
 class doubleLinkedList:
     def __init__(self):
         self.head = None
+        self.tail = None
 
     def add(self, item):
         addItem = Node(item)
@@ -34,6 +35,7 @@ class doubleLinkedList:
             addItem.setPrevious(None)
             addItem.setNext(None)
             self.head = addItem
+            self.tail = addItem
         else:
             self.head.setNext(addItem)
             addItem.setPrevious(self.head)
@@ -48,61 +50,102 @@ class doubleLinkedList:
             current = current.getPrevious()
         return count
 
-    def print(self):
-        current = self.head
-        while current != None:
-            print(current.getData())
-            current = current.getPrevious()
-
-    def sort(self, size):
-        #origiHead = self.head
-        highLs = []
-        for i in range(size):
+    def print(self, mode):
+        if mode == 1:
             current = self.head
-            highNum = 0
-            #print(i)
             while current != None:
-                if current.getData()[1] > highNum and current.getData()[1] not in highLs:
-                    high = current
-                    highNum = current.getData()[1]
-                else:
-                    current = current.getPrevious()
-            #print(high.getData())
-            current = self.head
-            while current.getData()[1] != high.getData()[1]:
+                if current.getData() != None:
+                    print(current.getData())
                 current = current.getPrevious()
-            #print(current.getData())
-            if current.getPrevious() == None:
-                try:
-                    current.getNext().setPrevious(None)
-                except:
-                    continue
-            elif current.getNext() == None:
-                current.getPrevious().setNext(None)
-            else:
-                current.getPrevious().setNext(current.getNext())
-                current.getNext().setPrevious(current.getPrevious())
-            
-            current.setPrevious(self.head)  
-            current.setNext(None)
-            highLs.append(current.getData()[1])
-            self.head = current
-            print(self.head.getPrevious().getData())
+        else:
+            current = self.tail
+            while current != None:
+                if current.getData() != None:
+                    print(current.getData())
+                current = current.getNext()
+        
 
+    def sort(self):
+        if self.head == None:
+            return 0
+        else:
+            current = self.head
+            while current.getPrevious() != None:
+                previousNode = current.getPrevious()
+                while previousNode != None:
+                    if current.getData()[1] > previousNode.getData()[1]:
+                        temp = current.getData()
+                        current.setData(previousNode.getData())
+                        previousNode.setData(temp)
+                    previousNode = previousNode.getPrevious()
+                current = current.getPrevious()
 
-            
-    
+    def retrieveScore(self, name):
+        current = self.head
+        found = True
+        while current.getData()[0] != name:
+            current = current.getPrevious()
+            if current == None:
+                found = False
+                break
+        if found:
+            return current.getData()
+
+    def editScore(self, name, score):
+        current = self.head
+        found = True
+        while current.getData()[0] != name:
+            current = current.getPrevious()
+            if current == None:
+                found = False
+                break
+        if found:
+            oldData = current.getData()
+            oldData[1] = score
+            current.setData(oldData)
+
+    def deleteScore(self, name):
+        current = self.head
+        found = True
+        while current.getData()[0] != name:
+            current = current.getPrevious()
+            if current == None:
+                found = False
+                break
+        if found:
+            while current.getNext() != None:
+                current.setData(current.getNext().getData())
+                current = current.getNext()
+            current.setData(None)
+
 def start():
     numPlayer = int(input("Enter the amount of players: "))
     dbll = doubleLinkedList()
     for i in range(numPlayer):
         dataArr = [input("Enter Name: "), int(input("Enter score: "))]
         dbll.add(dataArr)
-    #print(dbll.size())
-    dbll.print()
-    print(" ")
-    dbll.sort(dbll.size())
-    #print(dbll.size())
-    #dbll.print()
+    dbll.print(1)
+    mode = int(input("[1] Sort, [2] Edit, [3] Add, [4] Delete, [5] Retrieve: "))
+    if mode == 1:
+        dbll.sort()
+        userMode = int(input("[1] ascending, [2] decending: "))
+        dbll.print(userMode)
+    elif mode == 2:
+        name = input("Enter name of player: ")
+        score = int(input("Enter score: "))
+        dbll.editScore(name, score)
+        dbll.print(1)
+    elif mode == 3:
+        name = input("Enter name of player: ")
+        score = int(input("Enter score: "))
+        dbll.add([name, score])
+        dbll.print(1)
+    elif mode == 4:
+        name = input("Enter name of player: ")
+        dbll.deleteScore(name)
+        dbll.print(1)
+    elif mode == 5:
+        name = input("Enter name of player: ")
+        print(dbll.retrieveScore(name))
 
 start()
