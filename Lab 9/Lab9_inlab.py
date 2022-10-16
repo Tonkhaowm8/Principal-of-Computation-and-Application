@@ -1,5 +1,8 @@
 # Siraphop Mukdaphetcharat 64011614
 
+from matplotlib.pyplot import prism
+
+
 class Node: 
     def __init__(self, username_in, password_in): 
         # your code here 
@@ -43,7 +46,7 @@ class BST:
             else:
                 self.__find_node(current_node.left, username)
         else:
-            return username
+            return current_node
  
     #def remove(self, username): 
         # your code here 
@@ -73,3 +76,5 @@ for i in creArr:
     password = cret[1]
     newNode = Node(username, password)
     binaryTree.insert(newNode)
+
+print(binaryTree.find("prim"))
