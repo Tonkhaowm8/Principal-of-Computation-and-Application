@@ -45,6 +45,10 @@ class BST:
                     self.__find_node(current_node.right, username)
             else:
                 self.__find_node(current_node.left, username)
+                if current_node.right == None:
+                    return 0
+                else:
+                    self.__find_node(current_node.right, username)
         else:
             return current_node
  
@@ -77,4 +81,4 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
-print(binaryTree.find("prim"))
+print(binaryTree.find("prim").username)
