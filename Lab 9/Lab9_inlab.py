@@ -33,7 +33,7 @@ class BST:
     def find(self, username): 
         return self.__find_node(self.root, username) 
  
-    def __find_node(self, current_node, username): 
+    def __find_node(self, current_node, username):
         if current_node.username != username:
             if current_node.left == None:
                 if current_node.right == None:
@@ -42,6 +42,8 @@ class BST:
                     self.__find_node(current_node.right, username)
             else:
                 self.__find_node(current_node.left, username)
+        else:
+            return username
  
     #def remove(self, username): 
         # your code here 
@@ -70,4 +72,4 @@ for i in creArr:
     username = cret[0]
     password = cret[1]
     newNode = Node(username, password)
-    
+    binaryTree.insert(newNode)
