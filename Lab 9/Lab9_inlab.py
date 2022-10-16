@@ -34,22 +34,40 @@ class BST:
         return self.__find_node(self.root, username) 
  
     def __find_node(self, current_node, username): 
+        if current_node.username != username:
+            if current_node.left == None:
+                if current_node.right == None:
+                    return 0
+                else:
+                    self.__find_node(current_node.right, username)
+            else:
+                self.__find_node(current_node.left, username)
+ 
+    #def remove(self, username): 
         # your code here 
  
-    def remove(self, username): 
+    #def is_empty(self): 
         # your code here 
  
-    def is_empty(self): 
+    #def preorder(self): 
         # your code here 
  
-    def preorder(self): 
+    #def inorder(self): 
         # your code here 
  
-    def inorder(self): 
+    #def postorder(self): 
         # your code here 
  
-    def postorder(self): 
-        # your code here 
- 
-    def print(self): 
+    #def print(self): 
         # your code here
+
+binaryTree = BST()
+f = open('users7.txt')
+credentials = f.read()
+creArr = credentials.split('\n')
+for i in creArr:
+    cret = i.split(" ")
+    username = cret[0]
+    password = cret[1]
+    newNode = Node(username, password)
+    
