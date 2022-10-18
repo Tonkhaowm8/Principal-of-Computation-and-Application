@@ -1,5 +1,6 @@
 # Siraphop Mukdaphetcharat 64011614
 
+from itsdangerous import NoneAlgorithm
 from matplotlib.pyplot import prism
 
 
@@ -38,19 +39,14 @@ class BST:
  
     def __find_node(self, current_node, username):
         if current_node.username != username:
-            if current_node.left == None:
-                if current_node.right == None:
-                    return None
-                else:
-                    self.__find_node(current_node.right, username)
-            else:
+            if current_node.left != None:
                 a = self.__find_node(current_node.left, username)
                 if a != None:
                     return a
-                elif current_node.right == None:
-                    return None
-                else:
-                    self.__find_node(current_node.right, username)
+                if current_node.right != None:
+                    return self.__find_node(current_node.right, username)
+            if current_node.right != None:
+                return self.__find_node(current_node.right, username)
         else:
             return current_node
  
@@ -69,8 +65,15 @@ class BST:
     #def postorder(self): 
         # your code here 
  
-    #def print(self): 
-        # your code here
+    def print(self):
+        return self.printNode(self.root)
+
+    def printNode(self, node):
+        print(node.username)
+        if node.left != None:
+            self.printNode(node.left)
+        if node.right != None:
+            self.printNode(node.right)
 
 binaryTree = BST()
 f = open('users7.txt')
@@ -83,4 +86,5 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
-print(binaryTree.find("prim").username)
+#binaryTree.print()
+print(binaryTree.find("panya").username)
