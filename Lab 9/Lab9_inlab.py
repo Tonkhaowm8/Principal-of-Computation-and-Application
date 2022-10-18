@@ -53,8 +53,8 @@ class BST:
     #def remove(self, username): 
         # your code here 
  
-    #def is_empty(self): 
-        # your code here 
+    def is_empty(self): 
+        return self.head.left == None and self.head.right == None
  
     #def preorder(self): 
         # your code here 
