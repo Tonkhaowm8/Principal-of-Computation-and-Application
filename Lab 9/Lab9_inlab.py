@@ -40,13 +40,15 @@ class BST:
         if current_node.username != username:
             if current_node.left == None:
                 if current_node.right == None:
-                    return 0
+                    return None
                 else:
                     self.__find_node(current_node.right, username)
             else:
-                self.__find_node(current_node.left, username)
-                if current_node.right == None:
-                    return 0
+                a = self.__find_node(current_node.left, username)
+                if a != None:
+                    return a
+                elif current_node.right == None:
+                    return None
                 else:
                     self.__find_node(current_node.right, username)
         else:
