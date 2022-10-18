@@ -50,8 +50,23 @@ class BST:
         else:
             return current_node
  
-    #def remove(self, username): 
-        # your code here 
+    def remove(self, username): 
+        return self.removeNode(self, self.root, username)
+
+    def removeNode(self, current_node, username):
+        if current_node.username != username:
+            if current_node.left != None:
+                a = self.__find_node(current_node.left, username)
+                if a != None:
+                    return a
+                if current_node.right != None:
+                    return self.__find_node(current_node.right, username)
+            if current_node.right != None:
+                return self.__find_node(current_node.right, username)
+        else:
+            if current_node.left == None and current_node.right == None:
+                
+            return 0
  
     def is_empty(self): 
         return self.head.left == None and self.head.right == None
