@@ -50,28 +50,31 @@ class BST:
         else:
             return current_node
  
-    #def find_min(self):
+    def find_min(self, node):
+        if node.left != None:
+            return self.find__min(node.left)
+        else:
+            return node
 
 
     def remove(self, username): 
-        return self.removeNode(self, self.root, username)
+        removeNode = self.find(username)
+        # case 1, no child
+        if removeNode.left == None and removeNode.right == None:
+            removeNode.username = None
+            removeNode.password = None
 
-    def removeNode(self, current_node, username):
-        if current_node.username != username:
-            if current_node.left != None:
-                a = self.__find_node(current_node.left, username)
-                if a != None:
-                    return a
-                if current_node.right != None:
-                    return self.__find_node(current_node.right, username)
-            if current_node.right != None:
-                return self.__find_node(current_node.right, username)
-        else:
-            if current_node.left == None and current_node.right == None:
-                current_node.username = None
-                current_node.password = None
-            #elif current_node.left != None and current_node.right != None:
-
+        # case 2, 2 child
+        if removeNode.left != None and removeNode.right != None:
+            inorder = self.find_min(removeNode.right)
+            print(inorder.username)
+            inUsername = inorder.username
+            inPassword = inorder.password
+            inorder.username = None
+            inorder.password = None
+            removeNode.username = inUsername
+            removeNode.password = inPassword
+            
  
     def is_empty(self): 
         return self.head.left == None and self.head.right == None
@@ -84,29 +87,17 @@ class BST:
  
     #def postorder(self): 
         # your code here 
- 
-    def print(self):
-        return self.printNode(self.root)
-
-    def printNode(self, node):
-        print(node.username)
-        if node.left != None:
-            self.printNode(node.left)
-        if node.right != None:
-            self.printNode(node.right)
     
-    def printTree(self):
-        return self.printTreee(self.root, 0)
+    def print(self):
+        return self.printNode(self.root, 0)
 
-    def printTreee(self, node, level):
+    def printNode(self, node, level):
         if node != None:
             level += 1
-            self.printTreee(node.right, level)
+            self.printNode(node.right, level)
             print(" " * level * 15 + str([node.username, node.password])+ "\n")
             level += 1
-            self.printTreee(node.left, level)
-
-
+            self.printNode(node.left, level)
 
 binaryTree = BST()
 f = open('users7.txt')
@@ -119,5 +110,8 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
-binaryTree.printTree()
+binaryTree.print()
+print("---------------------------------------------------------------------------------------------------------------------------------")
+binaryTree.remove('tisha')
+binaryTree.print()
 #print(binaryTree.find("panya").username)
