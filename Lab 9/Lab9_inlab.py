@@ -137,8 +137,12 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
+print("------------------------------------------------------original-------------------------------------------------------------------")
 binaryTree.print()
-print("---------------------------------------------------------------------------------------------------------------------------------")
+print("-------------------------------------------------------removed-------------------------------------------------------------------")
 binaryTree.remove('sandy')
+binaryTree.preorder(binaryTree.root)
+binaryTree.inorder(binaryTree.root)
+binaryTree.postorder(binaryTree.root)
 binaryTree.print()
 #print(binaryTree.find("panya").username)
