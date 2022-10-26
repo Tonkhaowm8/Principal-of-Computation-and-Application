@@ -69,8 +69,16 @@ class BST:
             inorder = self.find_min(removeNode.right)
             inUsername = inorder.username
             inPassword = inorder.password
-            inorder.username = None
-            inorder.password = None
+            try:
+                inorder.username = inorder.left.username
+                inorder.password = inorder.left.password
+                inorder.right = inorder.left.right
+                inorder.left = inorder.left.left
+            except:
+                inorder.username = inorder.right.username
+                inorder.password = inorder.right.password
+                inorder.left = inorder.right.right
+                inorder.right = inorder.right.left
             removeNode.username = inUsername
             removeNode.password = inPassword
 
@@ -79,13 +87,13 @@ class BST:
             try:
                 removeNode.username = removeNode.left.username
                 removeNode.password = removeNode.left.password
-                removeNode.left = removeNode.left.left
                 removeNode.right = removeNode.left.right
+                removeNode.left = removeNode.left.left
             except:
                 removeNode.username = removeNode.right.username
                 removeNode.password = removeNode.right.password
-                removeNode.left = removeNode.right.left
-                removeNode.right = removeNode.right.right
+                removeNode.right = removeNode.right.left
+                removeNode.left = removeNode.right.right
             
             
  
@@ -118,12 +126,11 @@ class BST:
 
     def printNode(self, node, level):
         if node != None:
-            level += 1
-            self.printNode(node.right, level)
+            #level += 1
+            self.printNode(node.right, level + 1)
             if node.username != None:
                 print(" " * level * 15 + str([node.username, node.password])+ "\n")
-            level += 1
-            self.printNode(node.left, level)
+            self.printNode(node.left, level + 1)
 
 binaryTree = BST()
 f = open('users7.txt')
@@ -136,12 +143,12 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
-#print("------------------------------------------------------original-------------------------------------------------------------------")
-#binaryTree.print()
-#print("-------------------------------------------------------removed-------------------------------------------------------------------")
-#binaryTree.remove('sandy')
+print("------------------------------------------------------original-------------------------------------------------------------------")
+binaryTree.print()
+print("-------------------------------------------------------removed-------------------------------------------------------------------")
+binaryTree.remove('hello')
 #binaryTree.preorder(binaryTree.root)
 #binaryTree.inorder(binaryTree.root)
 #binaryTree.postorder(binaryTree.root)
-#binaryTree.print()
+binaryTree.print()
 #print(binaryTree.find("panya").username)
