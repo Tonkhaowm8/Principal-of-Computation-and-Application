@@ -96,7 +96,6 @@ class BST:
         if node == None:
             return 0
         print(node.username)
-        print(node.password)
         self.preorder(node.left)
         self.preorder(node.right)
  
@@ -104,7 +103,7 @@ class BST:
         if node == None:
             return
         self.inorder(node.left)
-        print(node.data)
+        print(node.username)
         self.inorder(node.right)
  
     def postorder(self, node): 
@@ -112,7 +111,7 @@ class BST:
             return
         self.postorder(node.left)
         self.postorder(node.right)
-        print(node.data) 
+        print(node.username) 
     
     def print(self):
         return self.printNode(self.root, 0)
@@ -137,12 +136,12 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
-print("------------------------------------------------------original-------------------------------------------------------------------")
-binaryTree.print()
-print("-------------------------------------------------------removed-------------------------------------------------------------------")
-binaryTree.remove('sandy')
-binaryTree.preorder(binaryTree.root)
-binaryTree.inorder(binaryTree.root)
-binaryTree.postorder(binaryTree.root)
-binaryTree.print()
+#print("------------------------------------------------------original-------------------------------------------------------------------")
+#binaryTree.print()
+#print("-------------------------------------------------------removed-------------------------------------------------------------------")
+#binaryTree.remove('sandy')
+#binaryTree.preorder(binaryTree.root)
+#binaryTree.inorder(binaryTree.root)
+#binaryTree.postorder(binaryTree.root)
+#binaryTree.print()
 #print(binaryTree.find("panya").username)
