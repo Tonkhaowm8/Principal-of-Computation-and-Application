@@ -52,7 +52,7 @@ class BST:
  
     def find_min(self, node):
         if node.left != None:
-            return self.find__min(node.left)
+            return self.find_min(node.left)
         else:
             return node
 
@@ -65,28 +65,54 @@ class BST:
             removeNode.password = None
 
         # case 2, 2 child
-        if removeNode.left != None and removeNode.right != None:
+        elif removeNode.left != None and removeNode.right != None:
             inorder = self.find_min(removeNode.right)
-            print(inorder.username)
             inUsername = inorder.username
             inPassword = inorder.password
             inorder.username = None
             inorder.password = None
             removeNode.username = inUsername
             removeNode.password = inPassword
+
+        #case 3, 1 child
+        else:
+            try:
+                removeNode.username = removeNode.left.username
+                removeNode.password = removeNode.left.password
+                removeNode.left = removeNode.left.left
+                removeNode.right = removeNode.left.right
+            except:
+                removeNode.username = removeNode.right.username
+                removeNode.password = removeNode.right.password
+                removeNode.left = removeNode.right.left
+                removeNode.right = removeNode.right.right
+            
             
  
-    def is_empty(self): 
-        return self.head.left == None and self.head.right == None
+    def is_empty(self, node): 
+        return node.left == None or node.right == None
  
-    #def preorder(self): 
-        # your code here 
+    def preorder(self, node): 
+        if node == None:
+            return 0
+        print(node.username)
+        print(node.password)
+        self.preorder(node.left)
+        self.preorder(node.right)
  
-    #def inorder(self): 
-        # your code here 
+    def inorder(self, node): 
+        if node == None:
+            return
+        self.inorder(node.left)
+        print(node.data)
+        self.inorder(node.right)
  
-    #def postorder(self): 
-        # your code here 
+    def postorder(self, node): 
+        if node == None:
+            return
+        self.postorder(node.left)
+        self.postorder(node.right)
+        print(node.data) 
     
     def print(self):
         return self.printNode(self.root, 0)
@@ -95,7 +121,8 @@ class BST:
         if node != None:
             level += 1
             self.printNode(node.right, level)
-            print(" " * level * 15 + str([node.username, node.password])+ "\n")
+            if node.username != None:
+                print(" " * level * 15 + str([node.username, node.password])+ "\n")
             level += 1
             self.printNode(node.left, level)
 
@@ -112,6 +139,6 @@ for i in creArr:
 
 binaryTree.print()
 print("---------------------------------------------------------------------------------------------------------------------------------")
-binaryTree.remove('tisha')
+binaryTree.remove('sandy')
 binaryTree.print()
 #print(binaryTree.find("panya").username)
