@@ -132,6 +132,15 @@ class BST:
                 print(" " * level * 15 + str([node.username, node.password])+ "\n")
             self.printNode(node.left, level + 1)
 
+    def countNode(self):
+        return self.__countNode(self.root)
+
+    def __countNode(self, node):
+        if node == None:
+            return 0
+        return 1 + self.__countNode(node.left) + self.__countNode(node.right)
+        
+
 binaryTree = BST()
 f = open('users7.txt')
 credentials = f.read()
@@ -143,12 +152,31 @@ for i in creArr:
     newNode = Node(username, password)
     binaryTree.insert(newNode)
 
-print("------------------------------------------------------original-------------------------------------------------------------------")
-binaryTree.print()
-print("-------------------------------------------------------removed-------------------------------------------------------------------")
-binaryTree.remove('hello')
-#binaryTree.preorder(binaryTree.root)
-#binaryTree.inorder(binaryTree.root)
-#binaryTree.postorder(binaryTree.root)
-binaryTree.print()
-#print(binaryTree.find("panya").username)
+def usernamePasswordInput():
+    attempt = 0
+    deleteUser = False
+
+    binaryTree.print()
+
+    while attempt != 3:
+        usernameInput = input("Enter username: ")
+        passwordInput = input("Enter password: ")
+        a = binaryTree.find(usernameInput)
+        if a != None:
+            if passwordInput == a.password:
+                deleteUser = False
+                break
+            else:
+                print("Error, wrong password!")
+                deleteUser = True
+                attempt += 1
+        else:
+            print('error! No user found!')
+    if deleteUser:
+        binaryTree.remove(usernameInput)
+    print('--------------------------------------------------------------------------')
+
+    binaryTree.print()
+
+#usernamePasswordInput()
+#print(binaryTree.countNode())
