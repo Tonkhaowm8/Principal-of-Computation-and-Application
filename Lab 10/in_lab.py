@@ -2,18 +2,18 @@ import os
 import math
 
 class node:
-    def __init__(data):
-        next = None
-        nodeData = data
+    def __init__(self, data):
+        self.next = None
+        self.nodeData = data
 
 
 class hashtable:
-    def __init__(arr):
-        hash_table = []
-        inputArr = arr
-        length = getNextPrime(len(arr) * 0.2)
-        for i in range(length):
-            hash_table.append(" ")
+    def __init__(self, arr):
+        self.hash_table = []
+        self.inputArr = arr
+        self.length = getNextPrime(round(len(arr) * 0.2))
+        for i in range(self.length):
+            self.hash_table.append(" ")
 
     def hash(self, str):
         h = 0
@@ -36,20 +36,27 @@ class hashtable:
             wordNode = node(i)
             key = self.hash(i)
             index = self.convertToIndex(key)
-            if self.hash_table == " ":
+            if self.hash_table[index] == " ":
                 self.hash_table[index] = wordNode
             else:
                 try:
                     check = self.hash_table[index].next
                     while check != None:
                         check = check.next
+                    check = wordNode
                 except:
                     self.hash_table[index].next = wordNode
-                
-                
-                
-            
 
+    def showTableSeparate(self):
+        for i in self.hash_table:
+            arr = []
+            if type(i) != str:
+                while i != None:
+                    arr.append(i.nodeData)
+                    i = i.next
+                print(arr)
+            else:
+                print(i)
 
 def getNextPrime(num):
     prime = False
@@ -74,4 +81,6 @@ data = file.read()
 file.close()
 data = data.split(" ")
 
-print(getNextPrime(29))
+hash_table = hashtable(data)
+hash_table.separate()
+hash_table.showTableSeparate()
