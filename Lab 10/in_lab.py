@@ -59,6 +59,17 @@ class hashtable:
                 arr.append(i)
                 print(arr)
 
+    def find(self, str):
+        key = self.hash(str)
+        index = self.convertToIndex(key)
+        current = self.hash_table[index]
+        while current != None:
+            if current.nodeData == str:
+                return (f"{str} is correctly spelled")
+            else:
+                current = current.next
+        return (f"{str} is not in the dictionary")
+
 def getNextPrime(num):
     prime = False
     while not prime:
@@ -74,6 +85,7 @@ def getNextPrime(num):
         else:
             num += 1
     return num
+
 
 
 
