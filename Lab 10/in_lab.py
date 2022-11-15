@@ -65,10 +65,10 @@ class hashtable:
         current = self.hash_table[index]
         while current != None:
             if current.nodeData == str:
-                return (f"{str} is correctly spelled")
+                return (f'"{str}" is correctly spelled')
             else:
                 current = current.next
-        return (f"{str} is not in the dictionary")
+        return (f'"{str}" is not in the dictionary')
 
 def getNextPrime(num):
     prime = False
@@ -96,4 +96,5 @@ data = data.split(" ")
 
 hash_table = hashtable(data)
 hash_table.separate()
-hash_table.showTableSeparate()
+#hash_table.showTableSeparate()
+print(hash_table.find("low"))
