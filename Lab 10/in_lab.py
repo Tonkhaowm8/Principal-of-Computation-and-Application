@@ -12,8 +12,10 @@ class hashtable:
         self.hash_table = []
         self.inputArr = arr
         self.length = getNextPrime(round(len(arr) * 0.2))
+        self.entry = 0.5 * self.length
         for i in range(self.length):
             self.hash_table.append(" ")
+        
 
     def hash(self, str):
         h = 0
@@ -25,8 +27,6 @@ class hashtable:
     def clear_table(self):
         for i in range(self.length):
             self.hash_table.pop()
-        for i in range(self.length):
-            self.hash_table.append(" ")
 
     def convertToIndex(self, key):
         return key % self.length
@@ -46,6 +46,13 @@ class hashtable:
                     check.next = wordNode
                 except:
                     self.hash_table[index].next = wordNode
+
+    def rehash(self):
+        self.clear_table()
+        for i in range(getNextPrime(self.length * 2)):
+            self.hash_table.append(" ")
+        self.separate()
+
 
     def showTableSeparate(self):
         for i in self.hash_table:
@@ -86,7 +93,12 @@ def getNextPrime(num):
             num += 1
     return num
 
-
+def start():
+    userInput = input("Enter a word to search: ")
+    hash_table = hashtable(data)
+    hash_table.separate()
+    #hash_table.showTableSeparate()
+    print(hash_table.find(userInput))
 
 
 file = open(r"/Users/tonkhaow/Desktop/Principal-of-Computation-and-Application/Lab 10/small.txt", "r")
@@ -94,7 +106,4 @@ data = file.read()
 file.close()
 data = data.split(" ")
 
-hash_table = hashtable(data)
-hash_table.separate()
-#hash_table.showTableSeparate()
-print(hash_table.find("low"))
+start()
