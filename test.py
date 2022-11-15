@@ -1,2 +1,3 @@
-a = "hello"
-print(a[2:-2])
+gay = ["1", "2", "3"]
+gay[2] = "hello"
+print(gay)
