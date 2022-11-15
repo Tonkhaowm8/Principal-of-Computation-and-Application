@@ -12,7 +12,6 @@ class hashtable:
         self.hash_table = []
         self.inputArr = arr
         self.length = getNextPrime(round(len(arr) * 0.2))
-        self.entry = 0.5 * self.length
         for i in range(self.length):
             self.hash_table.append(" ")
         
@@ -32,6 +31,7 @@ class hashtable:
         return key % self.length
 
     def separate(self):
+        entry = round(0.5 * self.length)
         for i in self.inputArr:
             wordNode = node(i)
             key = self.hash(i)
