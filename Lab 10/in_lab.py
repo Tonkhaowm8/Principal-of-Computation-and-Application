@@ -13,8 +13,7 @@ class hashtable:
         self.inputArr = arr
         self.length = getNextPrime(round(len(arr) * 0.2))
         for i in range(self.length):
-            self.hash_table.append(" ")
-        
+            self.hash_table.append(" ")  
 
     def hash(self, str):
         h = 0
@@ -32,10 +31,14 @@ class hashtable:
 
     def separate(self):
         entry = round(0.5 * self.length)
-        for i in self.inputArr:
-            wordNode = node(i)
-            key = self.hash(i)
+        rehash = False
+        for i in range(len(self.inputArr)):
+            wordNode = node(self.inputArr[i])
+            key = self.hash(self.inputArr[i])
             index = self.convertToIndex(key)
+            if i >= entry:
+                rehash = True
+                break
             if self.hash_table[index] == " ":
                 self.hash_table[index] = wordNode
             else:
@@ -46,13 +49,15 @@ class hashtable:
                     check.next = wordNode
                 except:
                     self.hash_table[index].next = wordNode
+        if rehash:
+            self.rehash()
 
     def rehash(self):
         self.clear_table()
-        for i in range(getNextPrime(self.length * 2)):
+        self.length = getNextPrime(self.length * 2)
+        for i in range(self.length):
             self.hash_table.append(" ")
         self.separate()
-
 
     def showTableSeparate(self):
         for i in self.hash_table:
@@ -101,7 +106,7 @@ def start():
     print(hash_table.find(userInput))
 
 
-file = open(r"/Users/tonkhaow/Desktop/Principal-of-Computation-and-Application/Lab 10/small.txt", "r")
+file = open(r"C:\Users\Tonkhaow\Desktop\PCA\Principal-of-Computation-and-Application\Lab 10\small.txt", "r")
 data = file.read()
 file.close()
 data = data.split(" ")
