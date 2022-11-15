@@ -56,7 +56,8 @@ class hashtable:
                     i = i.next
                 print(arr)
             else:
-                print(i)
+                arr.append(i)
+                print(arr)
 
 def getNextPrime(num):
     prime = False
