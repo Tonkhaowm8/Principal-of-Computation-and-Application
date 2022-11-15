@@ -41,9 +41,9 @@ class hashtable:
             else:
                 try:
                     check = self.hash_table[index].next
-                    while check != None:
+                    while check.next != None:
                         check = check.next
-                    check = wordNode
+                    check.next = wordNode
                 except:
                     self.hash_table[index].next = wordNode
 
