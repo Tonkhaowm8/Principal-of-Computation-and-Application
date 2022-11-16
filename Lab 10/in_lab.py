@@ -8,7 +8,6 @@ class node:
         self.next = None
         self.nodeData = data
 
-
 class hashtable:
     def __init__(self, arr):
         self.hash_table = []
@@ -65,7 +64,6 @@ class hashtable:
         if rehash:
             self.rehash(1)
             
-
     def rehash(self, mode):
         self.clear_table()
         self.length = getNextPrime(self.length * 2)
@@ -161,8 +159,6 @@ class hashtable:
         else:
             return (f'"{str}" is not in the dictionary')
                 
-                
-
 def getNextPrime(num):
     prime = False
     while not prime:
@@ -200,8 +196,6 @@ def start():
         print(f"{hash_table.expansion} expansions")
         print(f"load factor {hash_table.load_factor}")
         print(f"{hash_table.longest} collisions")
-
-
 
 file = open(r"C:\Users\Tonkhaow\Desktop\PCA\Principal-of-Computation-and-Application\Lab 10\small.txt", "r")
 data = file.read()
