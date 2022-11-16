@@ -91,9 +91,9 @@ class hashtable:
         index = self.convertToIndex(key)
         current = self.hash_table[index]
         while current != None:
-            if current == " ":
+            if current.nodeData == " ":
                 break
-            if current.nodeData == str:
+            if current == str:
                 return (f'"{str}" is correctly spelled')
             else:
                 current = current.next
@@ -118,11 +118,11 @@ class hashtable:
                 while True:
                     index = self.convertToIndex(key + j)
                     if self.hash_table[index] == " ":
+                        self.hash_table[index] = self.inputArr[i]
                         break
                     else:
                         j += 1
-                        collisions += 1
-                        continue
+                collisions = j
                 if collisions > self.collisions:
                     self.collisions = collisions
             self.load_factor = i / len(self.hash_table) 
@@ -181,23 +181,22 @@ def start():
     userMode = int(input("1. Separate Chaining, 2. Linear Probing: "))
     if userMode == 1:
         hash_table.separate()
-        #hash_table.showTableSeparate()
+        hash_table.showTableSeparate()
         print(hash_table.find(userInput))
-        print(f"Total Words: len(data)")
+        #print(f"Total Words: len(data)")
         print(f"{hash_table.expansion} expansions")
         print(f"load factor {hash_table.load_factor}")
         print(f"longest chain {hash_table.longest}")
     else:
         hash_table.linear()
-        #print(hash_table.showTableLinear())
+        print(hash_table.showTableLinear())
         print(hash_table.search(userInput))
-        print(hash_table.find(userInput))
-        print(f"Total Words: len(data)")
+        #print(f"Total Words: len(data)")
         print(f"{hash_table.expansion} expansions")
         print(f"load factor {hash_table.load_factor}")
         print(f"{hash_table.longest} collisions")
 
-file = open(r"C:\Users\Tonkhaow\Desktop\PCA\Principal-of-Computation-and-Application\Lab 10\small.txt", "r")
+file = open(r"C:\Users\Tonkhaow\Desktop\PCA\Principal-of-Computation-and-Application\Lab 10\full.txt", "r")
 data = file.read()
 file.close()
 data = data.split(" ")
