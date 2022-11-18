@@ -122,9 +122,8 @@ class hashtable:
                         break
                     else:
                         j += 1
-                collisions = j
-                if collisions > self.collisions:
-                    self.collisions = collisions
+                if j > self.collisions:
+                    self.collisions = j
             self.load_factor = i / len(self.hash_table) 
         if rehash:
             self.rehash(2)
@@ -194,7 +193,7 @@ def start():
         #print(f"Total Words: len(data)")
         print(f"{hash_table.expansion} expansions")
         print(f"load factor {hash_table.load_factor}")
-        print(f"{hash_table.longest} collisions")
+        print(f"{hash_table.collisions} collisions")
 
 file = open(r"C:\Users\Tonkhaow\Desktop\PCA\Principal-of-Computation-and-Application\Lab 10\full.txt", "r")
 data = file.read()
