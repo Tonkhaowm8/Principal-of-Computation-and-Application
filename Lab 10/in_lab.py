@@ -3,81 +3,81 @@
 import os
 import math
 
-class node:
+class node: # For linked list
     def __init__(self, data):
         self.next = None
         self.nodeData = data
 
 class hashtable:
     def __init__(self, arr):
-        self.hash_table = []
-        self.inputArr = arr
-        self.length = getNextPrime(round(len(arr) * 0.2))
+        self.hash_table = [] # Total number of spaces
+        self.inputArr = arr # Array input from dictionary
+        self.length = getNextPrime(round(len(arr) * 0.2)) # Get next prime number of 20% of length of array
         for i in range(self.length):
-            self.hash_table.append(" ")  
+            self.hash_table.append(" ")   # add space string to represent space in an array
         self.expansion = 0
         self.load_factor = 0
         self.collisions = 0
         self.longest = 0
 
-    def hash(self, str):
+    def hash(self, str): # given hash function
         h = 0
         for ch in str:
             h *= 37
             h += ord(ch)
         return h
 
-    def clear_table(self):
+    def clear_table(self): # clear table
         for i in range(self.length):
             self.hash_table.pop()
 
-    def convertToIndex(self, key):
+    def convertToIndex(self, key): # mod and convert to index
         return key % self.length
 
-    def separate(self):
+    def separate(self): # separate chaining function
         chain_length = 1
-        entry = round(0.5 * self.length)
+        entry = round(0.5 * self.length) # Get the number of input to reach the 0.5 load factor
         rehash = False
-        for i in range(len(self.inputArr)):
-            wordNode = node(self.inputArr[i])
-            key = self.hash(self.inputArr[i])
-            index = self.convertToIndex(key)
-            if i >= entry:
+        for i in range(len(self.inputArr)): # for every word in the dictionary
+            wordNode = node(self.inputArr[i]) # make the word a node
+            key = self.hash(self.inputArr[i]) # hash and get the key of the string
+            index = self.convertToIndex(key) # convert to index
+            if i >= entry: # check if total word is more than the 0.5 load factor
                 self.expansion += 1
                 rehash = True
                 self.longest = 0
                 break
-            if self.hash_table[index] == " ":
-                self.hash_table[index] = wordNode
-            else:
+            if self.hash_table[index] == " ": # check if the converted index is empty
+                self.hash_table[index] = wordNode # make empty index a node
+            else: # array is not empty
                 try:
-                    check = self.hash_table[index].next
-                    while check.next != None:
+                    check = self.hash_table[index].next # check if there is any next node in the linked list
+                    while check.next != None: # if there is then go to last node and add the current to last node
                         check = check.next
                         chain_length += 1
                     check.next = wordNode
-                    if chain_length > self.longest:
+                    if chain_length > self.longest: # if the counted chain is longer than the longest recorded then add it
                         self.longest = chain_length
                 except:
                     self.hash_table[index].next = wordNode
-            self.load_factor = i / len(self.hash_table)
+            self.load_factor = i / len(self.hash_table) # calculate load factor
         if rehash:
             self.rehash(1)
             
-    def rehash(self, mode):
-        self.clear_table()
-        self.length = getNextPrime(self.length * 2)
+    def rehash(self, mode): # rehash
+        self.clear_table() # clear table
+        self.length = getNextPrime(self.length * 2) # get next prime of 2x the length
         for i in range(self.length):
-            self.hash_table.append(" ")
+            self.hash_table.append(" ") # add spaces
         if mode == 1:
             self.separate()
         else:
             self.linear()
 
-    def showTableSeparate(self):
+    def showTableSeparate(self): # show the separate table
         for i in self.hash_table:
             arr = []
-            if type(i) != str:
+            if type(i) != str: # check if i is space and not node
                 while i != None:
                     arr.append(i.nodeData)
                     i = i.next
@@ -86,7 +86,7 @@ class hashtable:
                 arr.append(i)
                 print(arr)
 
-    def find(self, str):
+    def find(self, str): # 
         key = self.hash(str)
         index = self.convertToIndex(key)
         current = self.hash_table[index]
